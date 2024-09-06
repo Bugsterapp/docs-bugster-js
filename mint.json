@@ -1,24 +1,24 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Bugster",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
+    "primary": "#C6CBEB",
     "light": "#07C983",
-    "dark": "#0D9373",
+    "dark": "#C6CBEB",
     "anchors": {
-      "from": "#0D9373",
+      "from": "#C6CBEB",
       "to": "#07C983"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:ignacio@bugster.app"
     }
   ],
   "topbarCtaButton": {
