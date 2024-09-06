@@ -9,11 +9,7 @@
   "colors": {
     "primary": "#C6CBEB",
     "light": "#07C983",
-    "dark": "#C6CBEB",
-    "anchors": {
-      "from": "#C6CBEB",
-      "to": "#07C983"
-    }
+    "dark": "#363D61"
   },
   "topbarLinks": [
     {
@@ -23,7 +19,7 @@
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://bugster.app/home"
   },
   "tabs": [
     {
@@ -45,7 +41,7 @@
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://bugster.app/blog"
     }
   ],
   "navigation": [
@@ -85,7 +81,7 @@
   ],
   "footerSocials": {
     "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "github": "https://github.com/Bugsterapp",
+    "linkedin": "https://www.linkedin.com/company/bugsterapp"
   }
 }
