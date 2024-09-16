@@ -1,0 +1,95 @@
+---
+title: 'Framework Integration Overview'
+description: 'Learn how to integrate Bugster SDK with popular JavaScript frameworks'
+icon: 'sitemap'
+---
+
+## Introduction
+
+Bugster SDK is designed to seamlessly integrate with a variety of JavaScript frameworks, allowing you to add automated testing capabilities to your web applications regardless of the technology stack you're using. This overview will introduce you to the general concepts of integrating Bugster SDK with different frameworks and provide links to detailed guides for specific frameworks.
+
+## Supported Frameworks
+
+Bugster SDK currently provides dedicated integration support for the following frameworks:
+
+- [Angular](/framework-guides/angular)
+- [Next.js](/framework-guides/nextjs) (both Pages and App Router)
+- [Svelte](/framework-guides/svelte)
+- [React](/framework-guides/react)
+
+While these frameworks have dedicated guides, Bugster SDK can work with any JavaScript-based web application.
+
+## General Integration Steps
+
+Regardless of the framework you're using, the general steps for integrating Bugster SDK remain similar:
+
+1. **Installation**: Install the Bugster SDK package using your preferred package manager.
+2. **Initialization**: Initialize the SDK as early as possible in your application's lifecycle.
+3. **Configuration**: Set up any necessary configuration options.
+4. **Event Capturing**: Ensure the SDK can capture user interactions and relevant events.
+5. **Test Generation**: Use the captured events to generate and run tests.
+
+## Framework-Specific Considerations
+
+While the core functionality of Bugster SDK remains consistent across frameworks, there are some framework-specific considerations:
+
+### Angular
+- Integration with Angular's dependency injection system
+- Handling of Angular's zone.js for change detection
+
+### Next.js
+- Different setup for Pages Router and App Router
+- Considerations for server-side rendering (SSR)
+
+### Svelte
+- Integration with Svelte's reactive paradigm
+- Handling Svelte's compiled output
+
+### React
+- Integration with React's component lifecycle
+- Considerations for different state management solutions
+
+## Code Snippet: Basic Integration
+
+Here's a basic example of how to integrate Bugster SDK into a JavaScript application:
+
+```javascript
+import BugsterSDK from '@bugster/sdk';
+
+BugsterSDK.init({
+  projectId: 'YOUR_PROJECT_ID',
+  // Additional configuration options
+});
+```
+
+<Note>
+The exact location and method of initialization may vary depending on your framework. Refer to the framework-specific guides for detailed instructions.
+</Note>
+
+## Best Practices for Framework Integration
+
+1. **Early Initialization**: Initialize Bugster SDK as early as possible in your application's lifecycle.
+2. **Consistent Configuration**: Maintain consistent SDK configuration across different environments.
+3. **Event Bubbling**: Be aware of how your framework handles event bubbling and adjust SDK configuration if necessary.
+4. **State Management**: Consider how your framework's state management solution interacts with Bugster SDK.
+5. **Performance**: Monitor the performance impact of Bugster SDK and adjust settings if needed.
+
+## Troubleshooting Common Issues
+
+- **SDK Not Capturing Events**: Ensure the SDK is initialized before any user interactions occur.
+- **Framework-Specific Events Not Recorded**: Check if you need to use any framework-specific event capturing methods.
+- **Conflicts with Other Tools**: Be aware of potential conflicts with other development or testing tools.
+
+## Next Steps
+
+To get started with integrating Bugster SDK into your specific framework, choose from the following guides:
+
+- [Angular Integration Guide](/framework-guides/angular)
+- [Next.js Integration Guide](/framework-guides/nextjs)
+- [Svelte Integration Guide](/framework-guides/svelte)
+- [React Integration Guide](/framework-guides/react)
+
+Each guide provides detailed, framework-specific instructions to help you successfully integrate and use Bugster SDK in your web application.
+
+If you're using a framework not listed here, you can still use the general integration steps and adapt them to your specific needs. If you need further assistance, don't hesitate to [contact our support team](https://bugster.io/support).
+

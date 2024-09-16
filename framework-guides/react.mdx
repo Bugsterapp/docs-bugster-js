@@ -1,0 +1,317 @@
+---
+title: 'React Integration Guide'
+description: 'Learn how to integrate Bugster SDK into your React application'
+icon: 'react'
+---
+
+## Introduction
+
+This guide will walk you through the process of integrating Bugster SDK into your React application. By following these steps, you'll be able to add automated testing capabilities to your React project, leveraging Bugster SDK's powerful features.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- An existing React project (version 16.8 or later, with hooks support)
+- Node.js and npm installed
+- A Bugster SDK account and project ID
+
+## Step 1: Installation
+
+First, install the Bugster SDK package using npm:
+
+```bash
+npm install @bugster/sdk --save
+```
+
+## Step 2: Initialization
+
+To initialize Bugster SDK in your React application, we'll create a custom hook that handles the SDK initialization. This ensures that the SDK is initialized as early as possible in your application's lifecycle.
+
+Create a new file `src/hooks/useBugsterInit.js`:
+
+```javascript
+import { useEffect } from 'react';
+import BugsterSDK from '@bugster/sdk';
+
+export function useBugsterInit() {
+  useEffect(() => {
+    BugsterSDK.init({
+      projectId: 'YOUR_PROJECT_ID',
+      // Additional configuration options
+    });
+  }, []);
+}
+```
+
+Replace `'YOUR_PROJECT_ID'` with your actual Bugster project ID.
+
+Now, use this hook in your main `App.js` component:
+
+```jsx
+import React from 'react';
+import { useBugsterInit } from './hooks/useBugsterInit';
+
+function App() {
+  useBugsterInit();
+
+  return (
+    // Your app content
+  );
+}
+
+export default App;
+```
+
+## Step 3: Creating a Bugster Context
+
+To make Bugster SDK easily accessible throughout your React application, create a context that provides the SDK functionality.
+
+Create a new file `src/contexts/BugsterContext.js`:
+
+```javascript
+import React, { createContext, useContext, useCallback } from 'react';
+import BugsterSDK from '@bugster/sdk';
+
+const BugsterContext = createContext(null);
+
+export function BugsterProvider({ children }) {
+  const captureEvent = useCallback((eventName, eventData) => {
+    BugsterSDK.captureEvent(eventName, eventData);
+  }, []);
+
+  const captureError = useCallback((error) => {
+    BugsterSDK.captureError(error);
+  }, []);
+
+  const value = { captureEvent, captureError };
+
+  return (
+    <BugsterContext.Provider value={value}>
+      {children}
+    </BugsterContext.Provider>
+  );
+}
+
+export function useBugster() {
+  const context = useContext(BugsterContext);
+  if (context === null) {
+    throw new Error('useBugster must be used within a BugsterProvider');
+  }
+  return context;
+}
+```
+
+Wrap your app with the `BugsterProvider` in your main `App.js` or in the root component:
+
+```jsx
+import React from 'react';
+import { BugsterProvider } from './contexts/BugsterContext';
+import { useBugsterInit } from './hooks/useBugsterInit';
+
+function App() {
+  useBugsterInit();
+
+  return (
+    <BugsterProvider>
+      {/* Your app components */}
+    </BugsterProvider>
+  );
+}
+
+export default App;
+```
+
+## Step 4: Using Bugster SDK in Components
+
+Now you can use the Bugster context in your React components. Here's an example:
+
+```jsx
+import React from 'react';
+import { useBugster } from '../contexts/BugsterContext';
+
+function ExampleComponent() {
+  const { captureEvent } = useBugster();
+
+  const handleClick = () => {
+    captureEvent('button_click', { componentName: 'ExampleComponent' });
+    // Your button click logic here
+  };
+
+  return <button onClick={handleClick}>Click me</button>;
+}
+
+export default ExampleComponent;
+```
+
+## Step 5: Handling React-Specific Events
+
+React has its own event system and lifecycle methods. Here's how to capture React-specific events:
+
+```jsx
+import React, { useEffect, useState } from 'react';
+import { useBugster } from '../contexts/BugsterContext';
+
+function FormComponent() {
+  const [inputValue, setInputValue] = useState('');
+  const { captureEvent } = useBugster();
+
+  useEffect(() => {
+    captureEvent('component_mounted', { componentName: 'FormComponent' });
+    return () => {
+      captureEvent('component_unmounted', { componentName: 'FormComponent' });
+    };
+  }, [captureEvent]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    captureEvent('form_submit', { formName: 'exampleForm', inputValue });
+    // Your form submission logic here
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input 
+        type="text" 
+        value={inputValue} 
+        onChange={(e) => {
+          setInputValue(e.target.value);
+          captureEvent('input_change', { inputName: 'exampleInput', value: e.target.value });
+        }} 
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default FormComponent;
+```
+
+## Step 6: Error Boundary Integration
+
+Create a custom error boundary component that integrates with Bugster SDK:
+
+```jsx
+import React from 'react';
+import { useBugster } from '../contexts/BugsterContext';
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.props.captureError(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+
+function WithErrorBoundary({ children }) {
+  const { captureError } = useBugster();
+  return <ErrorBoundary captureError={captureError}>{children}</ErrorBoundary>;
+}
+
+export default WithErrorBoundary;
+```
+
+Use this error boundary in your components:
+
+```jsx
+import React from 'react';
+import WithErrorBoundary from './WithErrorBoundary';
+
+function MyComponent() {
+  return (
+    <WithErrorBoundary>
+      {/* Your component content */}
+    </WithErrorBoundary>
+  );
+}
+
+export default MyComponent;
+```
+
+## Best Practices for React Integration
+
+1. **Use Hooks**: Leverage React hooks for better integration with Bugster SDK. Consider creating custom hooks for specific tracking needs.
+
+2. **Higher-Order Components (HOCs)**: For class components or more complex scenarios, create HOCs that wrap components with Bugster tracking capabilities.
+
+3. **Route Changes**: If you're using React Router, track route changes:
+
+   ```jsx
+   import { useEffect } from 'react';
+   import { useLocation } from 'react-router-dom';
+   import { useBugster } from './contexts/BugsterContext';
+
+   function RouteTracker() {
+     const location = useLocation();
+     const { captureEvent } = useBugster();
+
+     useEffect(() => {
+       captureEvent('route_change', { path: location.pathname });
+     }, [location, captureEvent]);
+
+     return null;
+   }
+   ```
+
+   Add this component to your main App component.
+
+4. **Performance Monitoring**: Use Bugster SDK to track component render times:
+
+   ```jsx
+   import React, { useEffect, useRef } from 'react';
+   import { useBugster } from '../contexts/BugsterContext';
+
+   function PerformanceTrackedComponent() {
+     const { captureEvent } = useBugster();
+     const renderStart = useRef(performance.now());
+
+     useEffect(() => {
+       const renderTime = performance.now() - renderStart.current;
+       captureEvent('component_render_time', { 
+         componentName: 'PerformanceTrackedComponent', 
+         renderTime 
+       });
+     }, [captureEvent]);
+
+     return (
+       // Your component content
+     );
+   }
+   ```
+
+## Troubleshooting
+
+- **SDK Not Initializing**: Ensure that the `useBugsterInit` hook is called in your root App component.
+- **Context Not Available**: Check that your components are wrapped with the `BugsterProvider`.
+- **Events Not Captured**: Verify that you're using the `useBugster` hook correctly in your components.
+- **Performance Issues**: If you notice performance degradation, consider using `useCallback` and `useMemo` hooks to optimize Bugster SDK calls:
+
+  ```jsx
+  const memoizedHandleClick = useCallback(() => {
+    captureEvent('button_click', { componentName: 'ExampleComponent' });
+  }, [captureEvent]);
+  ```
+
+## Conclusion
+
+You've now successfully integrated Bugster SDK into your React application. This integration allows you to capture user interactions, generate automated tests, and improve the overall quality of your React app.
+
+For more advanced usage and configuration options, refer to the [Bugster SDK API Reference](/api-reference) and the [Advanced Configuration Guide](/advanced-configuration).
+
+If you encounter any issues or have questions, don't hesitate to [contact our support team](https://bugster.io/support) or check our [community forums](https://community.bugster.io).
+

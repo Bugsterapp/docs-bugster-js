@@ -1,0 +1,164 @@
+---
+title: 'How Bugster SDK Works'
+description: 'A deep dive into the Bugster SDK process: from integration to automated test execution'
+icon: 'gears'
+---
+
+## Overview
+
+Bugster SDK simplifies the e2e testing process through a series of automated steps, from initial integration to continuous test execution. This document provides a detailed look at each stage of the process.
+
+## The Bugster SDK Workflow
+
+### 1. Integration
+
+The first step in using Bugster SDK is integrating the `bugster-js` snippet into your frontend codebase.
+
+<CodeGroup>
+
+```javascript JavaScript
+// Add this at the top of your main entry point
+import BugsterSDK from 'bugster-js';
+
+BugsterSDK.init({
+  projectId: 'YOUR_PROJECT_ID',
+  // Additional configuration options
+});
+```
+
+```typescript TypeScript
+// Add this at the top of your main entry point
+import BugsterSDK from 'bugster-js';
+
+BugsterSDK.init({
+  projectId: 'YOUR_PROJECT_ID',
+  // Additional configuration options
+});
+```
+
+</CodeGroup>
+
+This lightweight snippet is responsible for capturing user interactions and sending them to the Bugster backend for processing.
+
+<Note>
+  Ensure you replace 'YOUR_PROJECT_ID' with the actual project ID provided in your Bugster dashboard.
+</Note>
+
+### 2. Event Capturing
+
+Once integrated, `bugster-js` begins capturing events from user interactions with your application. These events include:
+
+- Mouse clicks
+- Form submissions
+- Navigation actions
+- Keyboard inputs
+- API calls
+- State changes
+
+The SDK is designed to capture these events with minimal performance impact on your application.
+
+### 3. User Story Generation
+
+The captured events are sent to the Bugster backend, where they are processed and synthesized into coherent user stories. Each user story represents a common user flow through your application.
+
+For example, a user story might look like this:
+
+1. User navigates to the login page
+2. User enters username and password
+3. User clicks the login button
+4. User is redirected to the dashboard
+5. User clicks on the "Create New Project" button
+6. User fills out the project details form
+7. User submits the form
+8. New project appears in the project list
+
+### 4. Story Review and Acceptance
+
+Developers can review the captured user stories through the Bugster dashboard. This step allows you to:
+
+- View all captured user flows
+- Analyze the frequency and importance of each flow
+- Modify stories if necessary
+- Accept or reject stories for test generation
+
+<img src="/images/story-review-dashboard.png" alt="Bugster Story Review Dashboard" />
+
+### 5. Test Generation
+
+Upon acceptance of a user story, Bugster automatically generates e2e tests based on the approved flows. These tests are created using the Bugster Testing Framework, which is built on top of Playwright.
+
+Here's an example of a generated test:
+
+```javascript
+test('User can create a new project', async ({ page }) => {
+  await page.goto('/login');
+  await page.fill('#username', 'testuser');
+  await page.fill('#password', 'password123');
+  await page.click('#login-button');
+  await page.waitForNavigation();
+  expect(page.url()).toBe('/dashboard');
+  await page.click('#create-project-button');
+  await page.fill('#project-name', 'New Test Project');
+  await page.fill('#project-description', 'This is a test project');
+  await page.click('#submit-project');
+  await page.waitForSelector('.project-list-item:has-text("New Test Project")');
+});
+```
+
+### 6. Test Management and Execution
+
+Bugster provides a comprehensive interface for managing and executing your generated tests:
+
+- **Organize**: Group tests by feature, priority, or custom categories.
+- **Schedule**: Set up recurring test runs or trigger them manually.
+- **Configure**: Customize test environments and browsers.
+- **Execute**: Run tests locally, in the cloud, or as part of your CI/CD pipeline.
+
+<img src="/images/test-management-interface.png" alt="Bugster Test Management Interface" />
+
+### 7. Automatic Test Updates
+
+As you push changes to your application, Bugster automatically updates the test suite to reflect these changes. This process involves:
+
+1. Detecting changes in the application structure or flow
+2. Analyzing the impact on existing tests
+3. Updating affected tests or generating new ones as needed
+4. Notifying developers of significant changes
+
+This ensures that your tests always remain in sync with your current application state, reducing maintenance overhead and preventing test breakages due to application changes.
+
+## Advanced Features
+
+### AI-Powered Test Optimization
+
+Bugster uses machine learning algorithms to continuously optimize your test suite:
+
+- Identifying redundant tests
+- Suggesting test consolidations
+- Highlighting areas of the application with low test coverage
+
+### Visual Regression Testing
+
+In addition to functional testing, Bugster can perform visual regression tests:
+
+- Capturing screenshots at key points in the user flow
+- Comparing screenshots across test runs
+- Alerting developers to unexpected visual changes
+
+### Performance Metrics
+
+Bugster SDK can optionally capture performance metrics during test runs:
+
+- Page load times
+- Time to interactive
+- API response times
+- Custom performance markers
+
+These metrics can help you identify performance regressions and optimize your application.
+
+## Conclusion
+
+Bugster SDK's workflow is designed to seamlessly integrate with your development process, providing comprehensive e2e testing with minimal effort. By automating the capture, generation, and maintenance of tests, Bugster allows your team to focus on building features while ensuring the quality and reliability of your application.
+
+For more detailed information on setting up and using Bugster SDK, please refer to our [API Reference](/api-reference) and [Configuration Guide](/configuration).
+

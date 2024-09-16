@@ -2,14 +2,14 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Bugster",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/logo-bugster-br.png",
+    "light": "/logo/logo-bugster-br.png"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon-32x32.png",
   "colors": {
-    "primary": "#363D61",
-    "light": "#363D61",
-    "dark": "#C6CBEB"
+    "primary": "#111114",
+    "dark": "#363D61",
+    "light": "#C6CBEB"
   },
   "topbarLinks": [
     {
@@ -19,7 +19,7 @@
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://bugster.app/home"
+    "url": "https://bugster.app/dashboard"
   },
   "tabs": [
     {
@@ -31,12 +31,17 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://docs.bugster.dev/introduction"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "API Reference",
+      "icon": "server",
+      "url": "https://docs.bugster.dev/api-reference/introduction"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/Bugsterapp/bugster-js"
     },
     {
       "name": "Blog",
@@ -46,22 +51,67 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Introduction",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "introduction/bugster-sdk",
+        "introduction/how-it-works",
+         "introduction/key-benefits"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Get Started",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "get-started/prerequesites",
+        "get-started/installation",
+        "get-started/quickstart-guide"
+      ]
+    },
+    {
+      "group": "Core Concepts",
+      "pages": [
+        "core-concepts/user-stories",
+        "core-concepts/test-generation",
+        "core-concepts/test-management"
+      ]
+    },
+    {
+      "group": "Framework guides",
+      "pages": [
+        "framework-guides/overview",
+        "framework-guides/angular",
+        "framework-guides/next-js",
+        "framework-guides/svelte",
+        "framework-guides/react"
+      ]
+    },
+    {
+      "group": "Test Management",
+      "pages": [
+        "test-management/view-user-stories",
+        "test-management/accept-and-modify",
+        "test-management/group-and-organize"
+      ]
+    },
+    {
+      "group": "Test Execution",
+      "pages": [
+        "test-execution/running-locally",
+        "test-execution/cloud-execution",
+        "test-execution/cicd-integration"
+      ]
+    },
+    {
+      "group": "Best Practices",
+      "pages": [
+        "best-practices/optimizing-test-coverage",
+        "best-practices/mantaining-test",
+        "best-practices/troubleshoot"
+      ]
+    },
+    {
+      "group": "Resources",
+      "pages": [
+        "resources/privacy"
       ]
     },
     {

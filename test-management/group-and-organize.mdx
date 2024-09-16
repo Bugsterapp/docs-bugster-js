@@ -1,0 +1,167 @@
+---
+title: 'Grouping and Organizing Tests'
+description: 'Learn how to efficiently structure and manage your test suite in Bugster SDK'
+icon: 'folder-tree'
+---
+
+## Introduction
+
+Effectively grouping and organizing your tests is crucial for maintaining a scalable, manageable, and efficient test suite. Bugster SDK provides powerful tools to help you structure your tests logically, making it easier to run, maintain, and analyze your automated tests. This guide will walk you through the process of organizing your test suite for optimal performance and clarity.
+
+## Accessing the Test Organization Dashboard
+
+1. Log in to your Bugster SDK account at [https://app.bugster.io](https://app.bugster.io).
+2. Navigate to your project by selecting it from the project dropdown menu.
+3. In the left sidebar, click on "Test Organization" under the Test Management section.
+
+## Understanding Test Organization Concepts
+
+Before diving into the specifics, let's review key concepts in Bugster SDK's test organization:
+
+- **Test Cases**: Individual tests generated from user stories or created manually.
+- **Test Suites**: Collections of related test cases.
+- **Tags**: Labels that can be applied to test cases for easy filtering and organization.
+- **Folders**: Hierarchical structures to group related test suites and cases.
+- **Dependencies**: Relationships between tests that determine execution order.
+
+## Creating and Managing Folders
+
+Folders help you create a hierarchical structure for your tests:
+
+1. Click the "New Folder" button in the Test Organization Dashboard.
+2. Name your folder (e.g., "User Authentication", "Shopping Cart").
+3. Drag and drop test suites or other folders into this new folder.
+
+<Tip>
+Use folders to mirror your application's structure or to group tests by feature area.
+</Tip>
+
+## Creating and Managing Test Suites
+
+Test suites allow you to group related test cases:
+
+1. Click "Create Test Suite" in the dashboard.
+2. Name your suite and provide a description.
+3. Choose a folder to place the suite in, if applicable.
+4. Add test cases to the suite by dragging and dropping them from the test list.
+
+### Nested Test Suites
+
+You can create nested test suites for more granular organization:
+
+1. Right-click on an existing test suite.
+2. Select "Create Nested Suite".
+3. Name and configure the nested suite as you would a regular suite.
+
+## Tagging Tests
+
+Tags provide a flexible way to categorize and filter tests:
+
+1. Select a test case or multiple cases.
+2. Click the "Add Tag" button.
+3. Enter a new tag or select from existing tags.
+4. Common tag categories include:
+   - Priority levels (e.g., "High", "Medium", "Low")
+   - Test types (e.g., "Smoke", "Regression", "Performance")
+   - Features (e.g., "Login", "Checkout", "Search")
+
+<Note>
+You can apply multiple tags to a single test for more precise categorization.
+</Note>
+
+## Setting Up Test Dependencies
+
+To ensure tests run in the correct order:
+
+1. Select a test case in the dashboard.
+2. Click "Manage Dependencies".
+3. Choose tests that should run before the selected test.
+4. Set the dependency type (e.g., "Must Pass", "Must Run").
+
+## Bulk Operations
+
+For efficient management of large test suites:
+
+1. Use the checkbox to select multiple tests.
+2. Apply bulk actions like:
+   - Moving to a folder or suite
+   - Applying tags
+   - Setting dependencies
+   - Deleting or disabling tests
+
+## Searching and Filtering
+
+Utilize the powerful search and filter capabilities:
+
+1. Use the search bar to find tests by name, ID, or content.
+2. Apply filters based on:
+   - Tags
+   - Folders
+   - Test suites
+   - Last run status
+   - Creation date
+
+## Best Practices for Test Organization
+
+1. **Consistent Naming Conventions**: Use clear, consistent names for folders, suites, and tests.
+2. **Balanced Structure**: Aim for a structure that's neither too shallow nor too deep.
+3. **Purpose-Driven Organization**: Group tests based on features, user flows, or testing types.
+4. **Use Tags Effectively**: Create a standardized set of tags and apply them consistently.
+5. **Regular Maintenance**: Periodically review and refactor your test organization.
+6. **Document Your Structure**: Maintain documentation explaining your organization strategy.
+
+## Advanced Organization Techniques
+
+### Dynamic Test Suites
+
+Create dynamic test suites based on criteria:
+
+1. Click "Create Dynamic Suite".
+2. Set rules (e.g., all tests tagged "Critical" and "API").
+3. Tests matching these criteria will automatically be included.
+
+### Test Plans
+
+Create test plans for specific testing cycles:
+
+1. Go to the "Test Plans" section.
+2. Click "Create Test Plan".
+3. Select tests or entire suites to include.
+4. Set execution order and environment settings.
+
+## Collaboration and Sharing
+
+Enhance team collaboration:
+
+1. Use the "Share" button to give team members access to specific folders or suites.
+2. Set permissions (View, Edit, Manage) for shared items.
+3. Use comments to discuss organization strategies with your team.
+
+## Exporting and Reporting
+
+Generate reports on your test organization:
+
+1. Click "Generate Report" in the Test Organization Dashboard.
+2. Choose report type (e.g., Test Structure, Tag Distribution).
+3. Export in your preferred format (PDF, CSV, JSON).
+
+## Integrating with CI/CD
+
+Leverage your test organization in your CI/CD pipeline:
+
+1. Use the Bugster SDK API to fetch tests based on tags or suite structure.
+2. Integrate with your CI/CD tools to run specific suites or tagged tests.
+3. Update test metadata (e.g., last run status) via the API after CI/CD runs.
+
+## Troubleshooting
+
+- **Tests Not Appearing in Expected Location**: Check filters, ensure tests are not hidden, verify correct folder/suite assignment.
+- **Unable to Create Suites or Folders**: Confirm you have the necessary permissions.
+- **Inconsistent Tag Behavior**: Review tag assignments, check for typos in tag names.
+
+## Next Steps
+
+With your tests now properly organized, you're ready to start [Running and Analyzing Test Results](/test-management/running-analyzing-tests). An well-organized test suite will make this process much more efficient and insightful.
+
+If you need any assistance with grouping and organizing your tests, don't hesitate to [contact our support team](https://bugster.io/support).
+

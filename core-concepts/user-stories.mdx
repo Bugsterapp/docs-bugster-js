@@ -1,0 +1,162 @@
+---
+title: 'User Stories in Bugster SDK'
+description: 'Understanding how Bugster SDK leverages user stories for automated testing'
+icon: 'book-user'
+---
+
+## What are User Stories in Bugster SDK?
+
+In the context of Bugster SDK, user stories are automated representations of real user interactions with your web application. These stories capture the sequence of actions a user takes to accomplish a specific task or achieve a particular goal within your application.
+
+### Key Characteristics
+
+- **Real User Behavior**: User stories in Bugster SDK are based on actual user interactions, not hypothetical scenarios.
+- **Comprehensive**: They include all relevant details such as clicks, form inputs, navigations, and API calls.
+- **Replayable**: Each user story can be replayed to recreate the exact user journey.
+- **Convertible to Tests**: User stories serve as the foundation for generating automated tests.
+
+## How Bugster SDK Captures User Stories
+
+Bugster SDK uses a sophisticated event capturing system to record user interactions:
+
+1. **Event Listening**: The SDK listens for various DOM events (e.g., clicks, input changes, form submissions).
+2. **Network Monitoring**: API calls and responses are recorded as part of the user story.
+3. **State Tracking**: Changes in application state are noted to provide context for each action.
+4. **Intelligent Grouping**: Related actions are grouped into coherent user stories.
+
+<Note>
+Bugster SDK is designed to capture user stories with minimal impact on your application's performance.
+</Note>
+
+## Components of a User Story
+
+A typical user story in Bugster SDK consists of:
+
+1. **Initial State**: The starting point of the user's journey.
+2. **Sequence of Actions**: Chronological list of user interactions.
+3. **Network Requests**: API calls made during the user journey.
+4. **Final State**: The end result of the user's actions.
+5. **Metadata**: Additional information such as timestamps, user agent, etc.
+
+Here's a simplified example of a user story structure:
+
+```json
+{
+  "id": "us-123456",
+  "title": "User Login and Profile Update",
+  "startTimestamp": "2023-09-16T10:30:15Z",
+  "endTimestamp": "2023-09-16T10:31:45Z",
+  "initialState": {
+    "url": "https://example.com/login"
+  },
+  "actions": [
+    {
+      "type": "input",
+      "target": "#email",
+      "value": "user@example.com"
+    },
+    {
+      "type": "input",
+      "target": "#password",
+      "value": "********"
+    },
+    {
+      "type": "click",
+      "target": "#login-button"
+    },
+    {
+      "type": "navigation",
+      "url": "https://example.com/profile"
+    },
+    {
+      "type": "input",
+      "target": "#display-name",
+      "value": "John Doe"
+    },
+    {
+      "type": "click",
+      "target": "#save-profile"
+    }
+  ],
+  "networkRequests": [
+    {
+      "url": "https://api.example.com/login",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "url": "https://api.example.com/profile",
+      "method": "PUT",
+      "status": 200
+    }
+  ],
+  "finalState": {
+    "url": "https://example.com/profile",
+    "displayName": "John Doe"
+  }
+}
+```
+
+## User Stories in the Testing Lifecycle
+
+User stories play a crucial role throughout the testing lifecycle in Bugster SDK:
+
+1. **Capture**: User stories are continuously captured as users interact with your application.
+
+2. **Analysis**: Bugster's AI analyzes user stories to identify common patterns and critical paths.
+
+3. **Test Generation**: User stories serve as blueprints for generating automated tests.
+
+4. **Test Maintenance**: As user stories evolve, tests are automatically updated to reflect changes in user behavior or application flow.
+
+5. **Coverage Analysis**: User stories help identify areas of your application that may need more testing coverage.
+
+## Benefits of User Story-Based Testing
+
+Leveraging user stories for testing offers several advantages:
+
+- **Realistic Scenarios**: Tests based on real user behavior are more likely to catch real-world issues.
+- **Comprehensive Coverage**: User stories naturally cover various user flows, ensuring broad test coverage.
+- **Reduced Maintenance**: As user stories update automatically, tests remain current with minimal manual intervention.
+- **Prioritized Testing**: Frequently occurring user stories can be prioritized in your test suite.
+- **Improved User Experience**: By focusing on actual user journeys, you can identify and fix UX issues more effectively.
+
+## Customizing User Story Capture
+
+While Bugster SDK captures user stories automatically, you can customize the capture process:
+
+```javascript
+BugsterSDK.init({
+  projectId: 'YOUR_PROJECT_ID',
+  captureConfig: {
+    ignoredElements: ['#sensitive-input'],
+    maxActionsPerStory: 50,
+    captureNetworkRequests: true
+  }
+});
+```
+
+Refer to our [Configuration Guide](/configuration) for more details on customization options.
+
+## Viewing and Managing User Stories
+
+You can view and manage captured user stories in the Bugster Dashboard:
+
+1. Log in to your [Bugster Dashboard](https://dashboard.bugster.io)
+2. Navigate to your project
+3. Click on "User Stories"
+
+Here, you can:
+- Review captured user stories
+- Analyze user behavior patterns
+- Generate tests from selected stories
+- Archive or delete irrelevant stories
+
+<Tip>
+Regularly reviewing your user stories can provide valuable insights into how users interact with your application, helping you prioritize both testing efforts and feature development.
+</Tip>
+
+## Next Steps
+
+Now that you understand the concept of user stories in Bugster SDK, you're ready to explore how these stories are transformed into automated tests. Check out our guide on [Test Generation](/core-concepts/test-generation) to learn more about this process.
+

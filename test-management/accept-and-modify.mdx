@@ -1,0 +1,144 @@
+---
+title: 'Accepting and Modifying Tests'
+description: 'Learn how to review, accept, and modify automatically generated tests in Bugster SDK'
+icon: 'check-to-slot'
+---
+
+## Introduction
+
+After Bugster SDK captures user stories and generates test scenarios, the next crucial step is reviewing, accepting, and, if necessary, modifying these tests. This process ensures that your test suite accurately reflects desired user behaviors and covers all critical paths in your application. This guide will walk you through the steps of effectively managing your generated tests.
+
+## Accessing the Test Management Dashboard
+
+1. Log in to your Bugster SDK account at [https://app.bugster.io](https://app.bugster.io).
+2. Navigate to your project by selecting it from the project dropdown menu.
+3. In the left sidebar, click on "Test Management" to access the Test Management Dashboard.
+
+## Understanding the Test Management Dashboard
+
+The Test Management Dashboard provides an overview of all generated tests. Here's what you'll see:
+
+- **Test List**: A list of all generated tests, sorted by creation date.
+- **Status Indicators**: Icons showing the status of each test (e.g., New, Accepted, Modified, Failed).
+- **Filters**: Options to filter tests based on various criteria.
+- **Search Bar**: A tool to search for specific tests.
+- **Batch Actions**: Buttons for performing actions on multiple selected tests.
+
+## Reviewing Generated Tests
+
+To review a generated test:
+
+1. Click on a test in the list to expand its details.
+2. You'll see:
+   - **Test Name**: Automatically generated based on the user story.
+   - **Test Steps**: A detailed list of actions the test will perform.
+   - **Assertions**: Checkpoints that verify expected outcomes.
+   - **Related User Story**: Link to the original user story that generated this test.
+   - **Coverage Information**: What parts of your application this test covers.
+
+## Accepting Tests
+
+If a generated test looks good and doesn't require modifications:
+
+1. Review the test details thoroughly.
+2. Click the "Accept" button at the bottom of the test details panel.
+3. The test status will change to "Accepted" and it will be added to your active test suite.
+
+<Tip>
+You can batch accept multiple tests by selecting them in the list and using the "Accept Selected" button.
+</Tip>
+
+## Modifying Tests
+
+If a test requires changes:
+
+1. Click the "Modify" button in the test details panel.
+2. You'll enter the Test Editor mode, where you can:
+   - Edit test steps
+   - Modify or add assertions
+   - Adjust input data
+   - Change selectors for elements
+
+### Editing Test Steps
+
+1. Click on a step to edit its details.
+2. You can:
+   - Change the action type (e.g., click, input, wait)
+   - Modify element selectors
+   - Adjust wait times
+   - Add or remove steps
+
+### Modifying Assertions
+
+1. Scroll to the Assertions section.
+2. Click "Add Assertion" to include new checkpoints.
+3. For existing assertions, you can:
+   - Edit the expected outcome
+   - Change the element being asserted
+   - Remove unnecessary assertions
+
+### Adjusting Test Data
+
+1. Look for steps that involve input or data verification.
+2. Click on these steps to modify the data being used.
+3. You can use variables for dynamic data by enclosing them in curly braces, e.g., `{username}`.
+
+### Using the Code View
+
+For advanced users:
+
+1. Click "Switch to Code View" to see and edit the test in code format.
+2. Make your changes directly in the code.
+3. Click "Apply Changes" to save your modifications.
+
+## Saving and Versioning Modified Tests
+
+After making modifications:
+
+1. Click "Save Changes" to update the test.
+2. You'll be prompted to add a comment describing your changes.
+3. The test will be saved as a new version, with the ability to revert if needed.
+
+## Running Modified Tests
+
+To ensure your modifications work as expected:
+
+1. Click the "Run Test" button in the test details panel.
+2. Watch the test execution in real-time or wait for results.
+3. Review the test results and make further modifications if necessary.
+
+## Best Practices for Accepting and Modifying Tests
+
+1. **Thorough Review**: Carefully review each generated test before accepting.
+2. **Maintain Intent**: When modifying, ensure you keep the original intent of the user story.
+3. **Optimize for Reusability**: Look for opportunities to make tests more generic and reusable.
+4. **Balance Coverage and Maintenance**: Aim for comprehensive coverage without creating redundant or overly specific tests.
+5. **Use Descriptive Names**: Rename tests to clearly describe their purpose.
+6. **Document Changes**: Always add clear comments when modifying tests to help team understanding.
+
+## Handling Edge Cases
+
+1. Identify edge cases in user behavior that may not be covered by generated tests.
+2. Create new tests specifically for these edge cases by clicking "Create New Test" in the dashboard.
+3. Design these tests to complement your generated test suite.
+
+## Collaboration and Review Process
+
+Bugster SDK supports team collaboration in test management:
+
+1. Use the "Request Review" button to ask team members to review your modifications.
+2. Reviewers can comment on specific parts of the test.
+3. Use the "Approve" or "Request Changes" buttons to complete the review process.
+
+## Troubleshooting Common Issues
+
+- **Test Fails After Modification**: Review recent application changes, check for updated selectors, and verify test data.
+- **Unable to Save Changes**: Ensure you have the necessary permissions and that all required fields are filled.
+- **Inconsistent Test Results**: Check for timing issues, async operations, or environmental factors that might affect test reliability.
+
+## Next Steps
+
+Now that you understand how to accept and modify tests, you're ready to start [Grouping and Organizing Tests](/test-management/grouping-organizing-tests) to create a structured and manageable test suite.
+
+If you need any assistance with accepting or modifying tests, don't hesitate to [contact our support team](https://bugster.io/support).
+
