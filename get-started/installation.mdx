@@ -39,7 +39,7 @@ import BugsterTracker from '@bugster/bugster-js';
 ```
 
 ```typescript TypeScript
-import BugsterTracker from '@bugster/bugster-js';
+import {BugsterTracker} from '@bugster/bugster-js';
 ```
 
 </CodeGroup>
@@ -66,7 +66,7 @@ BugsterTracker.init({
 
 </CodeGroup>
 
-Replace `'YOUR_BUGSTER_API_KEY'` with the actual project ID from your Bugster dashboard.
+Replace `'YOUR_BUGSTER_API_KEY'` with the actual api key from your Bugster dashboard.
 
 <Note>
 Make sure to initialize Bugster SDK as early as possible in your application's lifecycle to ensure all user interactions are captured.
@@ -102,60 +102,7 @@ If you see the success message in your browser's console when you run your appli
 
 ## Framework-Specific Installation
 
-### React
-
-For React applications, it's recommended to initialize Bugster SDK in your `index.js` or `App.js` file:
-
-```jsx
-import React from 'react';
-import BugsterTracker from '@bugster/bugster-js';
-
-BugsterTracker.init({
-  apiKey: 'YOUR_BUGSTER_API_KEY',
-});
-
-function App() {
-  return (
-    // Your app components
-  );
-}
-
-export default App;
-```
-
-### Vue.js
-
-For Vue.js applications, you can initialize Bugster SDK in your `main.js` file:
-
-```javascript
-import { createApp } from 'vue';
-import App from './App.vue';
-import BugsterTracker from '@bugster/bugster-js';
-
-BugsterTracker.init({
-  apiKey: 'YOUR_BUGSTER_API_KEY',
-});
-
-createApp(App).mount('#app');
-```
-
-### Angular
-
-For Angular applications, initialize Bugster SDK in your `main.ts` file:
-
-```typescript
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
-import BugsterTracker from '@bugster/bugster-js';
-
-BugsterTracker.init({
-  apiKey: 'YOUR_BUGSTER_API_KEY',
-});
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
-```
-
+For specific Framework installation visit [Framework Guide](/framework-guides) for installing the snippet with popular client-side langauges.
 ## Advanced Configuration
 
 Bugster SDK offers various configuration options to customize its behavior. Here are some common options:
@@ -170,13 +117,13 @@ BugsterTracker.init({
 });
 ```
 
-For a full list of configuration options, refer to our [Configuration Guide](/configuration).
+For a full list of configuration options, refer to our [API Documentation](/api-reference).
 
 ## Troubleshooting
 
 If you encounter any issues during installation, try the following:
 
-1. Ensure you're using a compatible Node.js version (14.x or later).
+1. Ensure you're using a compatible Node.js version (19.x or later).
 2. Clear your npm cache: `npm cache clean --force`
 3. Delete your `node_modules` folder and `package-lock.json` file, then run `npm install` again.
 
@@ -184,5 +131,5 @@ If problems persist, check our [Troubleshooting Guide](/troubleshooting) or [con
 
 ## Next Steps
 
-Now that you have Bugster SDK installed and initialized, you're ready to start [capturing user interactions](/guides/capturing-interactions) and [generating tests](/guides/generating-tests). Check out our [Quick Start Guide](/get-started/quick-start) for next steps!
+Now that you have Bugster SDK installed and initialized, you're ready to start [viewing user stories](/test-management/view-user-stories) and [generating tests](/test-management/accept-and-modify). Check out our [Quick Start Guide](/get-started/quickstart-guide) for next steps!
 

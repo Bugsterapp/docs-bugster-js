@@ -41,7 +41,7 @@ BugsterTracker.init({
 ```
 
 ```typescript TypeScript
-import BugsterTracker from '@bugster/bugster-js';
+import {BugsterTracker} from '@bugster/bugster-js';
 
 BugsterTracker.init({
   apiKey: 'YOUR_BUGSTER_API_KEY',
@@ -50,10 +50,10 @@ BugsterTracker.init({
 
 </CodeGroup>
 
-Replace `'YOUR_BUGSTER_API_KEY'` with your actual Bugster project ID.
+Replace `'YOUR_BUGSTER_API_KEY'` with your actual Bugster api key.
 
 <Note>
-You can find your project ID in the Bugster dashboard under Project Settings.
+You can find your api key in the Bugster dashboard under Project Settings.
 </Note>
 
 ## Step 3: Verify Installation
@@ -77,16 +77,16 @@ Once initialized, Bugster SDK automatically starts capturing user interactions. 
 
 To test this:
 1. Run your application
-2. Perform some typical user actions (e.g., click buttons, fill forms)
+2. Perform some typical user actions (e.g., click buttons, fill forms) or a determinated user flow.
 3. These interactions will be sent to the Bugster servers
 
-## Step 5: View Captured Interactions
+## Step 5: View Captured User Stories
 
 To view the captured interactions:
 
-1. Log in to your [Bugster Dashboard](https://dashboard.bugster.app)
-2. Navigate to your project
-3. Click on "Captured Interactions"
+1. Log in to your [Bugster Dashboard](https://bugster.app/dashboard)
+2. Navigate to User Stories
+3. Watch catpured User stories grouped by feature
 
 You should see a list of recent user interactions from your application.
 
@@ -94,8 +94,8 @@ You should see a list of recent user interactions from your application.
 
 Now that you've captured some interactions, let's generate a test:
 
-1. In the Bugster Dashboard, go to "Captured Interactions"
-2. Select a sequence of interactions you want to turn into a test
+1. In the Bugster Dashboard, go to "User Stories"
+2. Select a User Story or a sequence of interactions you want to turn into a test
 3. Click "Generate Test"
 4. Review the generated test script
 5. Click "Save Test" to add it to your test suite
@@ -110,17 +110,17 @@ To run your newly generated test:
 4. Wait for the test to complete and view the results
 
 <Tip>
-You can also run tests locally or integrate them into your CI/CD pipeline. Check our [Advanced Usage Guide](/advanced-usage) for more details.
+You can also run tests locally or integrate them into your CI/CD pipeline. Check our [Test Execution Guide](/test-execution) for more details.
 </Tip>
 
 ## Next Steps
 
 Congratulations! You've successfully set up Bugster SDK, captured user interactions, and generated your first automated test. Here are some next steps to explore:
 
-- [Customize Interaction Capturing](/guides/customizing-capture): Learn how to fine-tune what interactions are captured
-- [Test Management](/guides/test-management): Organize and manage your growing test suite
-- [CI/CD Integration](/guides/ci-cd-integration): Integrate Bugster tests into your continuous integration workflow
-- [Advanced Configuration](/configuration): Explore advanced configuration options for Bugster SDK
+- [Customize Interaction Capturing](/api-reference/customization): Learn how to fine-tune what interactions are captured
+- [Test Management](/test-management/group-and-organize): Organize and manage your growing test suite
+- [CI/CD Integration](/test-execution/cicd-integration): Integrate Bugster tests into your continuous integration workflow
+- [Advanced Configuration](/api-reference/advanced-configuration): Explore advanced configuration options for Bugster SDK
 
 ## Troubleshooting
 
