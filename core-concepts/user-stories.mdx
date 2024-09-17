@@ -126,8 +126,8 @@ Leveraging user stories for testing offers several advantages:
 While Bugster SDK captures user stories automatically, you can customize the capture process:
 
 ```javascript
-BugsterSDK.init({
-  projectId: 'YOUR_PROJECT_ID',
+BugsterTracker.init({
+  apiKey: 'YOUR_BUGSTER_API_KEY',
   captureConfig: {
     ignoredElements: ['#sensitive-input'],
     maxActionsPerStory: 50,

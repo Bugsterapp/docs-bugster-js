@@ -21,7 +21,7 @@ Before you begin, ensure you have the following:
 First, install the Bugster SDK package using npm:
 
 ```bash
-npm install @bugster/sdk --save
+npm install @bugster/bugster-js --save
 ```
 
 ## Step 2: Initialization
@@ -33,10 +33,10 @@ Open your `src/main.ts` file and add the following code:
 ```typescript
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
-import BugsterSDK from '@bugster/sdk';
+import BugsterTracker from '@bugster/bugster-js';
 
-BugsterSDK.init({
-  projectId: 'YOUR_PROJECT_ID',
+BugsterTracker.init({
+  apiKey: 'YOUR_BUGSTER_API_KEY',
   // Additional configuration options
 });
 
@@ -44,7 +44,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 ```
 
-Replace `'YOUR_PROJECT_ID'` with your actual Bugster project ID.
+Replace `'YOUR_BUGSTER_API_KEY'` with your actual Bugster project ID.
 
 ## Step 3: Creating a Bugster Service
 
@@ -60,7 +60,7 @@ Open the generated `src/app/bugster.service.ts` file and add the following code:
 
 ```typescript
 import { Injectable } from '@angular/core';
-import BugsterSDK from '@bugster/sdk';
+import BugsterTracker from '@bugster/bugster-js';
 
 @Injectable({
   providedIn: 'root'
@@ -69,7 +69,7 @@ export class BugsterService {
   constructor() {}
 
   captureEvent(eventName: string, eventData: any) {
-    BugsterSDK.captureEvent(eventName, eventData);
+    BugsterTracker.captureEvent(eventName, eventData);
   }
 
   // Add other Bugster SDK methods as needed
@@ -148,7 +148,7 @@ Update your `src/environments/environment.ts` and `src/environments/environment.
 export const environment = {
   production: false, // or true for environment.prod.ts
   bugsterConfig: {
-    projectId: 'YOUR_PROJECT_ID',
+    apiKey: 'YOUR_BUGSTER_API_KEY',
     captureInDev: true, // set to false in production
     // Other environment-specific settings
   }
@@ -160,7 +160,7 @@ Then, update your `main.ts`:
 ```typescript
 import { environment } from './environments/environment';
 
-BugsterSDK.init(environment.bugsterConfig);
+BugsterTracker.init(environment.bugsterConfig);
 ```
 
 ## Best Practices for Angular Integration
@@ -173,12 +173,12 @@ BugsterSDK.init(environment.bugsterConfig);
 
    ```typescript
    import { ErrorHandler, Injectable } from '@angular/core';
-   import BugsterSDK from '@bugster/sdk';
+   import BugsterTracker from '@bugster/bugster-js';
 
    @Injectable()
    export class BugsterErrorHandler implements ErrorHandler {
      handleError(error: any) {
-       BugsterSDK.captureError(error);
+       BugsterTracker.captureError(error);
        console.error('An error occurred:', error);
      }
    }

@@ -18,20 +18,20 @@ The first step in using Bugster SDK is integrating the `bugster-js` snippet into
 
 ```javascript JavaScript
 // Add this at the top of your main entry point
-import BugsterSDK from 'bugster-js';
+import BugsterTracker from '@bugster/bugster-js';
 
-BugsterSDK.init({
-  projectId: 'YOUR_PROJECT_ID',
+BugsterTracker.init({
+  apiKey: 'YOUR_BUGSTER_API_KEY',
   // Additional configuration options
 });
 ```
 
 ```typescript TypeScript
 // Add this at the top of your main entry point
-import BugsterSDK from 'bugster-js';
+import { BugsterTracker } from '@bugster/bugster-js';
 
-BugsterSDK.init({
-  projectId: 'YOUR_PROJECT_ID',
+BugsterTracker.init({
+  apiKey: 'YOUR_BUGSTER_API_KEY',
   // Additional configuration options
 });
 ```
@@ -41,7 +41,7 @@ BugsterSDK.init({
 This lightweight snippet is responsible for capturing user interactions and sending them to the Bugster backend for processing.
 
 <Note>
-  Ensure you replace 'YOUR_PROJECT_ID' with the actual project ID provided in your Bugster dashboard.
+  Ensure you replace 'YOUR_BUGSTER_API_KEY' with the actual api key provided in your Bugster dashboard.
 </Note>
 
 ### 2. Event Capturing
@@ -81,7 +81,7 @@ Developers can review the captured user stories through the Bugster dashboard. T
 - Modify stories if necessary
 - Accept or reject stories for test generation
 
-<img src="/images/story-review-dashboard.png" alt="Bugster Story Review Dashboard" />
+<img src="/images/user-story-review.png" alt="Bugster Story Review Dashboard" />
 
 ### 5. Test Generation
 
@@ -89,20 +89,18 @@ Upon acceptance of a user story, Bugster automatically generates e2e tests based
 
 Here's an example of a generated test:
 
-```javascript
-test('User can create a new project', async ({ page }) => {
-  await page.goto('/login');
-  await page.fill('#username', 'testuser');
-  await page.fill('#password', 'password123');
-  await page.click('#login-button');
-  await page.waitForNavigation();
-  expect(page.url()).toBe('/dashboard');
-  await page.click('#create-project-button');
-  await page.fill('#project-name', 'New Test Project');
-  await page.fill('#project-description', 'This is a test project');
-  await page.click('#submit-project');
-  await page.waitForSelector('.project-list-item:has-text("New Test Project")');
-});
+```python
+def test_onboarding_sjuoh5lj(page):
+    page.get_by_placeholder("Ex. www.reddit.com").click()
+    page.get_by_placeholder("Ex. www.reddit.com").fill("www.bugster.app")
+    page.get_by_text("Continue").click()
+    page.get_by_placeholder("Ex. Bugster Inc.").click()
+    page.get_by_placeholder("Ex. Bugster Inc.").fill("Bugster")
+    page.get_by_text("Continue").click()
+    page.get_by_role(
+        role="section",
+        name="The Bugster team is now diligently working on your case. To discuss the details and strategize solut...",
+    ).click()
 ```
 
 ### 6. Test Management and Execution
@@ -114,7 +112,7 @@ Bugster provides a comprehensive interface for managing and executing your gener
 - **Configure**: Customize test environments and browsers.
 - **Execute**: Run tests locally, in the cloud, or as part of your CI/CD pipeline.
 
-<img src="/images/test-management-interface.png" alt="Bugster Test Management Interface" />
+<img src="/images/test-case-management.png" alt="Bugster Test Management Interface" />
 
 ### 7. Automatic Test Updates
 
@@ -160,5 +158,5 @@ These metrics can help you identify performance regressions and optimize your ap
 
 Bugster SDK's workflow is designed to seamlessly integrate with your development process, providing comprehensive e2e testing with minimal effort. By automating the capture, generation, and maintenance of tests, Bugster allows your team to focus on building features while ensuring the quality and reliability of your application.
 
-For more detailed information on setting up and using Bugster SDK, please refer to our [API Reference](/api-reference) and [Configuration Guide](/configuration).
+For more detailed information on setting up and using Bugster SDK, please refer to our [API Reference](/api-reference) and [Installation](/get-started/installation).
 

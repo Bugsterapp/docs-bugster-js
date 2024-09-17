@@ -22,7 +22,7 @@ Bugster SDK provides a flexible system for organizing your tests:
 Example of test organization in Bugster SDK:
 
 ```javascript
-BugsterSDK.organizeTest('login-flow', {
+BugsterTracker.organizeTest('login-flow', {
   suite: 'Authentication',
   tags: ['critical', 'smoke-test'],
   priority: 'high',
@@ -102,12 +102,12 @@ Keep your test suite healthy and up-to-date:
 Run tests across different environments:
 
 ```javascript
-BugsterSDK.setEnvironment('staging', {
+BugsterTracker.setEnvironment('staging', {
   baseUrl: 'https://staging.example.com',
   apiKey: 'staging-api-key'
 });
 
-BugsterSDK.runTest('login-flow', { environment: 'staging' });
+BugsterTracker.runTest('login-flow', { environment: 'staging' });
 ```
 
 ### 2. Data-Driven Testing
@@ -115,12 +115,12 @@ BugsterSDK.runTest('login-flow', { environment: 'staging' });
 Use data sets to run the same test with different inputs:
 
 ```javascript
-BugsterSDK.createDataSet('login-credentials', [
+BugsterTracker.createDataSet('login-credentials', [
   { username: 'user1@example.com', password: 'pass1' },
   { username: 'user2@example.com', password: 'pass2' }
 ]);
 
-BugsterSDK.runTest('login-flow', { dataSet: 'login-credentials' });
+BugsterTracker.runTest('login-flow', { dataSet: 'login-credentials' });
 ```
 
 ### 3. Test Dependencies
@@ -128,7 +128,7 @@ BugsterSDK.runTest('login-flow', { dataSet: 'login-credentials' });
 Define dependencies between tests:
 
 ```javascript
-BugsterSDK.setTestDependency('checkout-flow', ['login-flow', 'add-to-cart']);
+BugsterTracker.setTestDependency('checkout-flow', ['login-flow', 'add-to-cart']);
 ```
 
 ### 4. Flaky Test Detection
@@ -136,7 +136,7 @@ BugsterSDK.setTestDependency('checkout-flow', ['login-flow', 'add-to-cart']);
 Automatically identify and flag inconsistent tests:
 
 ```javascript
-BugsterSDK.enableFlakyDetection('login-flow', {
+BugsterTracker.enableFlakyDetection('login-flow', {
   threshold: 0.2,  // 20% failure rate
   runCount: 10     // Over 10 runs
 });

@@ -21,7 +21,7 @@ Before you begin, ensure you have the following:
 First, install the Bugster SDK package using npm:
 
 ```bash
-npm install @bugster/sdk --save
+npm install @bugster/bugster-js --save
 ```
 
 ## Step 2: Initialization
@@ -32,19 +32,19 @@ Create a new file `src/hooks/useBugsterInit.js`:
 
 ```javascript
 import { useEffect } from 'react';
-import BugsterSDK from '@bugster/sdk';
+import BugsterTracker from '@bugster/bugster-js';
 
 export function useBugsterInit() {
   useEffect(() => {
-    BugsterSDK.init({
-      projectId: 'YOUR_PROJECT_ID',
+    BugsterTracker.init({
+      apiKey: 'YOUR_BUGSTER_API_KEY',
       // Additional configuration options
     });
   }, []);
 }
 ```
 
-Replace `'YOUR_PROJECT_ID'` with your actual Bugster project ID.
+Replace `'YOUR_BUGSTER_API_KEY'` with your actual Bugster project ID.
 
 Now, use this hook in your main `App.js` component:
 
@@ -71,17 +71,17 @@ Create a new file `src/contexts/BugsterContext.js`:
 
 ```javascript
 import React, { createContext, useContext, useCallback } from 'react';
-import BugsterSDK from '@bugster/sdk';
+import BugsterTracker from '@bugster/bugster-js';
 
 const BugsterContext = createContext(null);
 
 export function BugsterProvider({ children }) {
   const captureEvent = useCallback((eventName, eventData) => {
-    BugsterSDK.captureEvent(eventName, eventData);
+    BugsterTracker.captureEvent(eventName, eventData);
   }, []);
 
   const captureError = useCallback((error) => {
-    BugsterSDK.captureError(error);
+    BugsterTracker.captureError(error);
   }, []);
 
   const value = { captureEvent, captureError };

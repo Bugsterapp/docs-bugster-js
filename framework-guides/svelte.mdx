@@ -21,7 +21,7 @@ Before you begin, ensure you have the following:
 First, install the Bugster SDK package using npm:
 
 ```bash
-npm install @bugster/sdk --save
+npm install @bugster/bugster-js --save
 ```
 
 ## Step 2: Initialization
@@ -33,18 +33,18 @@ Create a new file `src/lib/BugsterInit.svelte`:
 ```html
 <script>
   import { onMount } from 'svelte';
-  import BugsterSDK from '@bugster/sdk';
+  import BugsterTracker from '@bugster/bugster-js';
 
   onMount(() => {
-    BugsterSDK.init({
-      projectId: 'YOUR_PROJECT_ID',
+    BugsterTracker.init({
+      apiKey: 'YOUR_BUGSTER_API_KEY',
       // Additional configuration options
     });
   });
 </script>
 ```
 
-Replace `'YOUR_PROJECT_ID'` with your actual Bugster project ID.
+Replace `'YOUR_BUGSTER_API_KEY'` with your actual Bugster project ID.
 
 Now, import and use this component in your main `App.svelte` file:
 
@@ -67,7 +67,7 @@ Create a new file `src/lib/bugsterStore.js`:
 
 ```javascript
 import { writable } from 'svelte/store';
-import BugsterSDK from '@bugster/sdk';
+import BugsterTracker from '@bugster/bugster-js';
 
 function createBugsterStore() {
   const { subscribe, set } = writable(null);
@@ -75,10 +75,10 @@ function createBugsterStore() {
   return {
     subscribe,
     captureEvent: (eventName, eventData) => {
-      BugsterSDK.captureEvent(eventName, eventData);
+      BugsterTracker.captureEvent(eventName, eventData);
     },
     captureError: (error) => {
-      BugsterSDK.captureError(error);
+      BugsterTracker.captureError(error);
     },
     // Add other Bugster SDK methods as needed
   };
@@ -144,11 +144,11 @@ Create or modify `src/routes/__layout.svelte`:
 ```html
 <script>
   import { onMount } from 'svelte';
-  import BugsterSDK from '@bugster/sdk';
+  import BugsterTracker from '@bugster/bugster-js';
 
   onMount(() => {
-    BugsterSDK.init({
-      projectId: 'YOUR_PROJECT_ID',
+    BugsterTracker.init({
+      apiKey: 'YOUR_BUGSTER_API_KEY',
       // Additional configuration options
     });
   });

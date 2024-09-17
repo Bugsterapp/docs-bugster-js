@@ -13,15 +13,15 @@ First, install the Bugster SDK package in your project:
 <CodeGroup>
 
 ```bash npm
-npm install @bugster/sdk
+npm install @bugster/bugster-js
 ```
 
 ```bash yarn
-yarn add @bugster/sdk
+yarn add @bugster/bugster-js
 ```
 
 ```bash pnpm
-pnpm add @bugster/sdk
+pnpm add @bugster/bugster-js
 ```
 
 </CodeGroup>
@@ -33,24 +33,24 @@ Add the following code to your main JavaScript or TypeScript file:
 <CodeGroup>
 
 ```javascript JavaScript
-import BugsterSDK from '@bugster/sdk';
+import BugsterTracker from '@bugster/bugster-js';
 
-BugsterSDK.init({
-  projectId: 'YOUR_PROJECT_ID',
+BugsterTracker.init({
+  apiKey: 'YOUR_BUGSTER_API_KEY',
 });
 ```
 
 ```typescript TypeScript
-import BugsterSDK from '@bugster/sdk';
+import BugsterTracker from '@bugster/bugster-js';
 
-BugsterSDK.init({
-  projectId: 'YOUR_PROJECT_ID',
+BugsterTracker.init({
+  apiKey: 'YOUR_BUGSTER_API_KEY',
 });
 ```
 
 </CodeGroup>
 
-Replace `'YOUR_PROJECT_ID'` with your actual Bugster project ID.
+Replace `'YOUR_BUGSTER_API_KEY'` with your actual Bugster project ID.
 
 <Note>
 You can find your project ID in the Bugster dashboard under Project Settings.
@@ -61,8 +61,8 @@ You can find your project ID in the Bugster dashboard under Project Settings.
 To ensure Bugster SDK is initialized correctly, add a callback function:
 
 ```javascript
-BugsterSDK.init({
-  projectId: 'YOUR_PROJECT_ID',
+BugsterTracker.init({
+  apiKey: 'YOUR_BUGSTER_API_KEY',
   onInitialized: () => {
     console.log('Bugster SDK initialized successfully!');
   },
@@ -126,7 +126,7 @@ Congratulations! You've successfully set up Bugster SDK, captured user interacti
 
 If you encounter any issues:
 
-- Ensure your `projectId` is correct
+- Ensure your `apiKey` is correct
 - Check that you're initializing Bugster SDK early in your application lifecycle
 - Review our [Troubleshooting Guide](/troubleshooting) for common issues and solutions
 
