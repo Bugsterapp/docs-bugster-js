@@ -25,6 +25,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Platform",
+      "url": "platform"
     }
   ],
   "anchors": [
@@ -126,6 +130,34 @@
         "api-reference/endpoint/get",
         "api-reference/endpoint/create",
         "api-reference/endpoint/delete"
+      ]
+    },
+    {
+      "group": "Introduction",
+      "pages": [
+        "platform/introduction",
+        "platform/dashboard"
+      ]
+    },
+    {
+      "group": "Test Generation",
+      "pages": [
+        "platform/test-generation/introduction",
+        "platform/test-generation/ai-prompt",
+        "platform/test-generation/sanity",
+        "platform/test-generation/chrome-extension"
+      ]
+    },
+    {
+      "group": "Test Management",
+      "pages": [
+        "platform/test-management/introduction"
+      ]
+    },
+    {
+      "group": "Test Execution",
+      "pages": [
+        "platform/test-execution/introduction"
       ]
     }
   ],
