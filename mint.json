@@ -117,7 +117,8 @@
       "pages": [
         "resources/privacy",
         "resources/performance",
-         "resources/data-privacy"
+         "resources/data-privacy",
+         "resources/code-privacy"
       ]
     },
     {
@@ -131,8 +132,7 @@
     {
       "group": "Introduction",
       "pages": [
-        "platform/introduction",
-        "platform/dashboard"
+        "platform/introduction"
       ]
     },
     {

@@ -1,0 +1,77 @@
+---
+title: "Test Execution Overview"
+description: "Guide to executing automated tests in Bugster"
+icon: "server"
+---
+
+This guide will walk you through the different ways to execute tests in Bugster, including automatic nightly runs, integration with CI/CD pipelines, and manual execution directly from the platform.
+
+## Introduction to Test Execution in Bugster
+
+Bugster provides multiple options for running your automated tests:
+
+1. **Nightly Full Test Runs**: Every night, Bugster automatically runs the entire test suite to ensure that your platform remains functional. This helps catch bugs early by continuously testing key features.
+2. **CI/CD Pipeline Integration**: Bugster integrates seamlessly with your CI/CD pipeline, allowing you to execute tests as part of your deployment process.
+3. **Manual Execution**: You can manually trigger test execution at any time directly from the Bugster platform, enabling you to verify specific changes or rerun tests on demand.
+
+<Note>
+  These execution options give you flexibility, whether you need continuous
+  testing with nightly runs or prefer more control with manual or pipeline-based
+  executions.
+</Note>
+
+## Automatic Nightly Full Test Run
+
+Every night, Bugster runs your entire test suite across all environments. This ensures that your application is tested for any potential bugs or regressions, even if no changes have been made recently.
+
+1. **Comprehensive Testing**: All active test cases are executed automatically.
+2. **Automated Alerts**: If any tests fail during the nightly run, Bugster will notify you with the results and details of the failure.
+3. **Reports**: The results of the nightly run are compiled into a report, which can be accessed from the **Runs** section of the Bugster dashboard.
+
+<Note>
+  Nightly test runs are an essential part of continuous testing, helping you
+  catch issues before they impact users.
+</Note>
+
+## CI/CD Pipeline Integration
+
+To integrate Bugster with your CI/CD pipeline, follow these steps:
+
+1. **API Access**: Use Bugster’s API to trigger test execution from within your pipeline scripts.
+2. **Automated Execution**: As part of your deployment process, Bugster can execute your test suite automatically, ensuring that each deployment is validated before going live.
+3. **Fail-Safe**: If a critical test case fails during execution, you can configure the pipeline to halt the deployment, preventing buggy code from being released.
+
+<Note>
+  Integrating Bugster with your CI/CD pipeline ensures that tests are part of
+  your automated workflow, providing consistent validation across each release.
+</Note>
+
+## Manual Execution from the Platform
+
+You can also manually execute your tests directly from the Bugster dashboard:
+
+1. **Select Test Cases**: Navigate to the **Test Cases** section and select the specific test cases or groups of tests you want to run.
+2. **Run the Tests**: Click **Run Test** to trigger the execution. You can monitor the progress in real-time and view results immediately after completion.
+
+<Note>
+  Manual execution is perfect for verifying specific changes, running tests in
+  isolation, or rerunning failed tests after fixing bugs.
+</Note>
+
+## Viewing and Managing Test Results
+
+Once tests are executed (whether through nightly runs, CI/CD integration, or manual execution), you can access detailed reports in the **Runs** section:
+
+1. **View Results**: Access pass/fail status, error logs, and screenshots for each test case.
+2. **Analyze Failures**: Investigate test failures by reviewing detailed logs and traces provided in the reports.
+3. **Rerun Failed Tests**: You can rerun failed tests directly from the **Runs** section to confirm if an issue has been resolved.
+
+## Next Steps
+
+Now that you understand how to execute tests in Bugster, explore more advanced options for managing your test runs and integrating them into your development process:
+
+1. [How to Integrate Bugster with CI/CD](/ci-integration)
+2. [Managing Test Runs and Results](/test-management/runs)
+3. [Advanced Configuration for Test Execution](/api-reference)
+
+For continuous test validation and quick feedback, use the combination of nightly test runs, pipeline integration, and manual execution to ensure your platform is always running smoothly.
