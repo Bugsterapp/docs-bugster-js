@@ -1,6 +1,7 @@
 ---
-title: 'Privacy Compliance'
-description: 'Understanding Bugster SDK approach to data privacy and regulatory compliance'
+title: "Privacy Compliance"
+description: "Understanding Bugster SDK approach to data privacy and regulatory compliance"
+icon: "scale-balanced"
 ---
 
 ## Introduction
@@ -25,19 +26,19 @@ It's important to note that Bugster SDK is designed to be configurable, allowing
 To help you comply with GDPR:
 
 1. **Data Minimization**: Configure Bugster SDK to collect only the data you need.
-   
+
    ```javascript
    const bugster = new BugsterTracker({
-     apiKey: 'YOUR_API_KEY',
-     capturePageview: false,  // Disable automatic pageview tracking
-     captureUtm: false,       // Disable UTM parameter capture
+     apiKey: "YOUR_API_KEY",
+     capturePageview: false, // Disable automatic pageview tracking
+     captureUtm: false, // Disable UTM parameter capture
    });
    ```
 
 2. **Right to be Forgotten**: Use the `deleteUser` method to remove a user's data.
-   
+
    ```javascript
-   bugster.deleteUser('user-id-to-delete');
+   bugster.deleteUser("user-id-to-delete");
    ```
 
 3. **Data Portability**: Implement a data export feature using Bugster's API (contact support for details).
@@ -47,7 +48,7 @@ To help you comply with GDPR:
 For CCPA compliance:
 
 1. **Right to Opt-Out**: Provide a way for California residents to opt-out of data collection.
-   
+
    ```javascript
    if (userOptedOut) {
      bugster.optOut();
@@ -61,7 +62,7 @@ For CCPA compliance:
 To comply with PECR and similar cookie laws:
 
 1. **Cookie Consent**: Only initialize Bugster SDK after obtaining user consent.
-   
+
    ```javascript
    if (userHasGivenConsent) {
      initializeBugsterTracker();
@@ -76,8 +77,8 @@ To anonymize IP addresses:
 
 ```javascript
 const bugster = new BugsterTracker({
-  apiKey: 'YOUR_API_KEY',
-  anonymizeIP: true
+  apiKey: "YOUR_API_KEY",
+  anonymizeIP: true,
 });
 ```
 
@@ -93,7 +94,7 @@ Bugster SDK automatically tries to avoid capturing sensitive data:
 You can add additional protection for sensitive fields:
 
 ```javascript
-bugster.maskInput('#sensitive-field');
+bugster.maskInput("#sensitive-field");
 ```
 
 ## Data Retention
@@ -102,8 +103,8 @@ By default, Bugster retains data for 30 days. You can configure this period:
 
 ```javascript
 const bugster = new BugsterTracker({
-  apiKey: 'YOUR_API_KEY',
-  dataRetentionDays: 14  // Set data retention to 14 days
+  apiKey: "YOUR_API_KEY",
+  dataRetentionDays: 14, // Set data retention to 14 days
 });
 ```
 
@@ -117,9 +118,9 @@ Bugster SDK uses a combination of techniques to identify users:
 Use the `identify` method to set a distinct ID:
 
 ```javascript
-bugster.identify('user-123', {
-  name: 'John Doe',
-  email: 'john@example.com'
+bugster.identify("user-123", {
+  name: "John Doe",
+  email: "john@example.com",
 });
 ```
 
@@ -144,4 +145,3 @@ We recommend regularly auditing your Bugster SDK configuration and usage to ensu
 For more detailed information about privacy compliance with Bugster SDK, please refer to our [full privacy documentation](https://docs.bugster.app/privacy) or contact our support team.
 
 Remember, while we provide tools and features to help with compliance, it's ultimately your responsibility to ensure that your use of Bugster SDK complies with all applicable laws and regulations.
-
