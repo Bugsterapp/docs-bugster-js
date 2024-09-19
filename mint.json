@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Bugster",
   "logo": {
-    "dark": "/logo/logo-bugster-br.png",
-    "light": "/logo/logo-bugster-br.png"
+    "dark": "/logo/LOGOTYPE-VIOLET-LIGHT.png",
+    "light": "/logo/LOGOTYPE-VIOLET-DARK.png"
   },
   "favicon": "/favicon-32x32.png",
   "colors": {
