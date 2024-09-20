@@ -5,9 +5,9 @@
     "dark": "/logo/LOGOTYPE-VIOLET-LIGHT.png",
     "light": "/logo/LOGOTYPE-VIOLET-DARK.png"
   },
-  "favicon": "/favicon-32x32.png",
+  "favicon": "/output-onlinepngtools.png",
   "colors": {
-    "primary": "#111114",
+    "primary": "#363D61",
     "dark": "#363D61",
     "light": "#C6CBEB"
   },
@@ -158,7 +158,7 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
+    "x": "https://x.com/Bugsterdotapp",
     "github": "https://github.com/Bugsterapp",
     "linkedin": "https://www.linkedin.com/company/bugsterapp"
   }
