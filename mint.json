@@ -35,12 +35,12 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://docs.bugster.dev/introduction"
+      "url": "https://docs.bugster.app/introduction"
     },
     {
       "name": "API Reference",
       "icon": "server",
-      "url": "https://docs.bugster.dev/api-reference/introduction"
+      "url": "https://docs.bugster.app/api-reference/introduction"
     },
     {
       "name": "GitHub",
