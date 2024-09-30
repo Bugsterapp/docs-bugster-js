@@ -85,7 +85,8 @@
         "framework-guides/angular",
         "framework-guides/next-js",
         "framework-guides/svelte",
-        "framework-guides/react"
+        "framework-guides/react",
+        "framework-guides/vue"
       ]
     },
     {
