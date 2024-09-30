@@ -1,43 +1,57 @@
 ---
-title: 'Vue Integration Guide'
-description: 'Learn how to integrate Bugster SDK into your React application'
+title: 'Vue.js Integration Guide'
+description: 'Learn how to integrate Bugster SDK into your Vue.js application'
 icon: 'vuejs'
 ---
 
-Follow these steps to integrate the Bugster SDK with your Vue.js application:
+## Integrate Bugster SDK with Vue.js
 
-## 1. Read the docs
+This guide will help you integrate Bugster SDK into your Vue.js project and start using its automated testing capabilities.
 
-Before you begin, make sure to read through the Bugster documentation for a comprehensive understanding of the SDK and its auto-tracking capabilities.
+---
 
-## 2. Install Bugster using your package manager
+## Prerequisites
 
-Open your terminal and run the following command:
+Before getting started, ensure you have:
+
+- A Vue.js project set up (version 3.0 or later)
+- Node.js and npm installed
+- A Bugster account with an API key
+
+---
+
+## Step 1: Install the Bugster SDK
+
+Install Bugster SDK using your package manager:
 
 ```bash
 npm i @bugster/bugster-js
 ```
 
-## 3. Create a Bugster plugin
+---
+
+## Step 2: Activate your plugin
+
+Create a Bugster plugin to make the SDK accessible globally across your Vue application.
 
 Create a new file `src/plugins/bugsterPlugin.js` with the following content:
 
 ```javascript
+// src/plugins/bugsterPlugin.js
 import { BugsterTracker } from '@bugster/bugster-js';
 
 const bugsterPlugin = {
   install(app, options) {
-    // Initialize BugsterTracker with auto-tracking enabled
+    // Initialize BugsterTracker
     const bugster = new BugsterTracker({
-      apiKey: options.apiKey || 'bugster_lpzp8uwMLHwLygPTvaey3ftIoLtusVBT',
+      apiKey: options.apiKey || 'YOUR_API_KEY',
       endpoint: "https://i.bugster.app",
-      autoTrack: true, // Enable auto-tracking
     });
 
-    // Add the Bugster instance to the app's global properties
+    // Add the Bugster instance to the app's global context
     app.config.globalProperties.$bugster = bugster;
 
-    // Optional: provide the tracker for injection elsewhere
+    // Optional: the tracker can also be provided for injection elsewhere
     app.provide('bugster', bugster);
   },
 };
@@ -45,7 +59,9 @@ const bugsterPlugin = {
 export default bugsterPlugin;
 ```
 
-## 4. Initialize the plugin
+---
+
+## Step 3: Initialize the Bugster Plugin
 
 In your main Vue application file (usually `main.js` or `main.ts`), initialize the Bugster plugin:
 
@@ -57,58 +73,19 @@ import bugsterPlugin from './plugins/bugsterPlugin';
 const app = createApp(App);
 
 app.use(bugsterPlugin, {
-  apiKey: 'bugster_lpzp8uwMLHwLygPTvaey3ftIoLtusVBT',
+  apiKey: 'YOUR_API_KEY',
   endpoint: "https://i.bugster.app",
 });
 
 app.mount('#app');
 ```
 
-## 5. Auto-tracking in action
+---
 
-With auto-tracking enabled, Bugster will automatically capture various events and interactions within your Vue.js application without requiring manual tracking calls. This includes:
+## Conclusion
 
-- Page views
-- Click events
-- Form submissions
-- API calls
-- Performance metrics
-- Error logging
+You've now successfully integrated Bugster SDK into your Vue.js application. This integration allows you to capture user interactions, generate automated tests, and improve the overall quality of your Vue app.
 
-You don't need to add any additional code to your components for these events to be tracked. Bugster will handle it automatically.
+For more advanced usage and configuration options, refer to the [Bugster SDK API Reference](/api-reference) and the [Advanced Configuration Guide](/advanced-configuration).
 
-However, if you need to add custom data or context to the auto-tracked events, you can use the Bugster instance in your components:
-
-```vue
-<script>
-export default {
-  mounted() {
-    // Add custom context to auto-tracked events
-    this.$bugster.setContext('user', {
-      id: 'user123',
-      plan: 'premium'
-    });
-  }
-}
-</script>
-```
-
-Or with Composition API:
-
-```vue
-<script setup>
-import { inject, onMounted } from 'vue';
-
-const bugster = inject('bugster');
-
-onMounted(() => {
-  // Add custom context to auto-tracked events
-  bugster.setContext('user', {
-    id: 'user123',
-    plan: 'premium'
-  });
-});
-</script>
-```
-
-That's it! You've successfully integrated the Bugster SDK with your Vue.js application, and auto-tracking is now enabled. Bugster will automatically collect data on user interactions and application performance without requiring manual tracking calls throughout your code.
+If you encounter any issues or have questions, don't hesitate to [contact our support team](https://bugster.app/contact).

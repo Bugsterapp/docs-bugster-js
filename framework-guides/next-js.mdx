@@ -1,60 +1,71 @@
 ---
 title: 'Next.js Integration Guide'
 description: 'Learn how to integrate Bugster SDK into your Next.js application'
-icon: 'js'
+icon: 'n'
 ---
 
-## Introduction
+## Integrate Bugster SDK with Next.js
 
-This guide will walk you through the process of integrating Bugster SDK into your Next.js application. We'll cover both the Pages Router and the App Router approaches, ensuring you can add automated testing capabilities to your Next.js project regardless of which routing system you're using.
+This guide will help you integrate Bugster SDK into your Next.js project and start using its automated testing capabilities.
+
+---
 
 ## Prerequisites
 
-Before you begin, ensure you have the following:
+Before getting started, ensure you have:
 
-- An existing Next.js project (version 10.0 or later)
+- A Next.js project set up (version 10.0 or later)
 - Node.js and npm installed
-- A Bugster SDK account and project ID
+- A Bugster account with an API key
 
-## Step 1: Installation
+---
 
-First, install the Bugster SDK package using npm:
+## Step 1: Install the Bugster SDK
+
+Install Bugster SDK using your package manager:
 
 ```bash
-npm install @bugster/bugster-js --save
+npm i @bugster/bugster-js
 ```
 
-## Step 2: Initialization
+---
 
-The initialization process differs slightly depending on whether you're using the Pages Router or the App Router.
+## Step 2: Add Environment Variables
+
+Add your environment variables to your `.env.local` file and your hosting provider (such as Vercel, Netlify, AWS). You can find your project API key in your project settings.
+
+```bash
+NEXT_PUBLIC_BUGSTER_KEY=YOUR_API_KEY
+```
+
+---
+
+## Step 3: Initialize Bugster SDK
 
 ### Pages Router
 
-For the Pages Router, we'll initialize Bugster SDK in a custom `_app.js` file.
+For the Pages Router, initialize Bugster SDK in a custom `_app.js` file.
 
 Create or modify `pages/_app.js`:
 
 ```javascript
-import { useEffect } from 'react';
-import BugsterTracker from '@bugster/bugster-js';
+import { BugsterTracker } from '@bugster/bugster-js';
+      
+let bugster: BugsterTracker | null = null; 
 
-function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    BugsterTracker.init({
-      apiKey: 'YOUR_BUGSTER_API_KEY',
-      // Additional configuration options
+useEffect(() => {
+  if (typeof window !== 'undefined' && !bugster) {
+    bugster = new BugsterTracker({
+      apiKey: NEXT_PUBLIC_BUGSTER_KEY,
+      endpoint: "https://i.bugster.app",
     });
-  }, []);
-
-  return <Component {...pageProps} />;
-}
-
-export default MyApp;
+  }
+}, []);
 ```
 
 ### App Router
 
-For the App Router, we'll initialize Bugster SDK in a client-side component.
+For the App Router, initialize Bugster SDK in a client-side component.
 
 Create a new file `components/BugsterInitializer.js`:
 
@@ -67,8 +78,8 @@ import BugsterTracker from '@bugster/bugster-js';
 export function BugsterInitializer() {
   useEffect(() => {
     BugsterTracker.init({
-      apiKey: 'YOUR_BUGSTER_API_KEY',
-      // Additional configuration options
+      apiKey: process.env.NEXT_PUBLIC_BUGSTER_KEY,
+      endpoint: "https://i.bugster.app",
     });
   }, []);
 
@@ -93,199 +104,14 @@ export default function RootLayout({ children }) {
 }
 ```
 
-Replace `'YOUR_BUGSTER_API_KEY'` with your actual Bugster project ID in both cases.
-
-## Step 3: Creating a Bugster Hook
-
-To make Bugster SDK easily accessible throughout your Next.js application, create a custom hook that wraps the SDK functionality.
-
-Create a new file `hooks/useBugster.js`:
-
-```javascript
-import { useCallback } from 'react';
-import BugsterTracker from '@bugster/bugster-js';
-
-export function useBugster() {
-  const captureEvent = useCallback((eventName, eventData) => {
-    BugsterTracker.captureEvent(eventName, eventData);
-  }, []);
-
-  const captureError = useCallback((error) => {
-    BugsterTracker.captureError(error);
-  }, []);
-
-  return { captureEvent, captureError };
-}
-```
-
-## Step 4: Using Bugster SDK in Components
-
-Now you can use the Bugster hook in your Next.js components. Here's an example:
-
-```javascript
-import { useBugster } from '@/hooks/useBugster';
-
-export default function ExampleComponent() {
-  const { captureEvent } = useBugster();
-
-  const handleClick = () => {
-    captureEvent('button_click', { componentName: 'ExampleComponent' });
-    // Your button click logic here
-  };
-
-  return <button onClick={handleClick}>Click me</button>;
-}
-```
-
-## Step 5: Handling Next.js-Specific Events
-
-Next.js has some specific events and lifecycle methods that you might want to capture. Here's how to handle them:
-
-### Page Changes (Pages Router)
-
-In your `_app.js`, you can capture page changes:
-
-```javascript
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import BugsterTracker from '@bugster/bugster-js';
-
-function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      BugsterTracker.captureEvent('route_change', { path: url });
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router]);
-
-  // ... rest of your _app.js code
-}
-```
-
-### Navigation Events (App Router)
-
-For the App Router, you can use the `usePathname` and `useSearchParams` hooks to track navigation:
-
-```javascript
-'use client';
-
-import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useBugster } from '@/hooks/useBugster';
-
-export function NavigationEvents() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const { captureEvent } = useBugster();
-
-  useEffect(() => {
-    captureEvent('route_change', { 
-      path: pathname,
-      query: Object.fromEntries(searchParams.entries())
-    });
-  }, [pathname, searchParams, captureEvent]);
-
-  return null;
-}
-```
-
-Then use this component in your root layout:
-
-```javascript
-import { NavigationEvents } from '@/components/NavigationEvents';
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>
-        <BugsterInitializer />
-        <NavigationEvents />
-        {children}
-      </body>
-    </html>
-  );
-}
-```
-
-## Step 6: Error Handling
-
-To capture unhandled errors, you can create a custom error boundary component:
-
-```javascript
-import React from 'react';
-import { useBugster } from '@/hooks/useBugster';
-
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    this.props.captureError(error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
-    }
-
-    return this.props.children;
-  }
-}
-
-export function WithErrorBoundary({ children }) {
-  const { captureError } = useBugster();
-  return <ErrorBoundary captureError={captureError}>{children}</ErrorBoundary>;
-}
-```
-
-Wrap your pages or components with this error boundary:
-
-```javascript
-import { WithErrorBoundary } from '@/components/ErrorBoundary';
-
-export default function MyPage() {
-  return (
-    <WithErrorBoundary>
-      {/* Your page content */}
-    </WithErrorBoundary>
-  );
-}
-```
-
-## Best Practices for Next.js Integration
-
-1. **Server-Side Rendering (SSR)**: Be aware that Bugster SDK runs on the client-side. Ensure you're not calling SDK methods during server-side rendering.
-
-2. **API Routes**: If you're using Next.js API routes, you can capture backend events by importing and using Bugster SDK directly in your API handlers.
-
-3. **Performance**: To minimize impact on performance, consider using dynamic imports for the Bugster SDK initialization in non-critical paths.
-
-4. **Environment Variables**: Use Next.js environment variables to manage your Bugster project ID and other configuration options across different environments.
-
-## Troubleshooting
-
-- **SDK Not Initializing**: Ensure that the SDK is imported and initialized correctly in `_app.js` (Pages Router) or your client-side initializer component (App Router).
-- **Events Not Captured**: Check if the Bugster hook is properly used in your components and that events are being triggered as expected.
-- **SSR Issues**: If you encounter errors related to SSR, make sure you're not calling Bugster SDK methods on the server side.
+---
 
 ## Conclusion
 
-You've now successfully integrated Bugster SDK into your Next.js application, covering both the Pages Router and App Router approaches. This integration allows you to capture user interactions, generate automated tests, and improve the overall quality of your Next.js app.
+You've now successfully integrated Bugster SDK into your Next.js application. This integration allows you to capture user interactions, generate automated tests, and improve the overall quality of your Next.js app.
 
 For more advanced usage and configuration options, refer to the [Bugster SDK API Reference](/api-reference) and the [Advanced Configuration Guide](/advanced-configuration).
 
-If you encounter any issues or have questions, don't hesitate to [contact our support team](https://bugster.app/support) or check our [community forums](https://community.bugster.app).
+If you encounter any issues or have questions, don't hesitate to [contact our support team](https://bugster.app/contact).
+
 

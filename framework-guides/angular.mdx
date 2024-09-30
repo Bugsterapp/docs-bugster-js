@@ -4,211 +4,60 @@ description: 'Learn how to integrate Bugster SDK into your Angular application'
 icon: 'angular'
 ---
 
-## Introduction
+## Integrate Bugster SDK with Angular
 
-This guide will walk you through the process of integrating Bugster SDK into your Angular application. By following these steps, you'll be able to add automated testing capabilities to your Angular project, leveraging Bugster SDK's powerful features.
+This guide will help you integrate Bugster SDK into your Angular project and start using its automated testing capabilities.
+
+---
 
 ## Prerequisites
 
-Before you begin, ensure you have the following:
+Before getting started, ensure you have:
 
-- An existing Angular project (version 9.0 or later)
+- An Angular project set up (version 9.0 or later)
 - Node.js and npm installed
-- A Bugster SDK account and project ID
+- A Bugster account with an API key
 
-## Step 1: Installation
+---
+## Step 1: Install the Bugster SDK
 
-First, install the Bugster SDK package using npm:
+Install Bugster SDK using your package manager:
 
 ```bash
-npm install @bugster/bugster-js --save
+npm i @bugster/bugster-js
 ```
 
-## Step 2: Initialization
+---
 
-To initialize Bugster SDK in your Angular application, you'll need to modify your `main.ts` file. This ensures that the SDK is initialized as early as possible in your application's lifecycle.
+## Step 2: Add Environment Variables
 
-Open your `src/main.ts` file and add the following code:
+Add your environment variables to your `.env.local` file and your hosting provider (such as Vercel, Netlify, AWS). You can find your project API key in your project settings.
+
+```bash
+BUGSTER_KEY=YOUR_API_KEY
+```
+
+---
+## Step 3: Initialize Bugster SDK
 
 ```typescript
+// src/main.ts
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
-import BugsterTracker from '@bugster/bugster-js';
+import { BugsterTracker } from '@bugster/bugster-js';
 
-BugsterTracker.init({
-  apiKey: 'YOUR_BUGSTER_API_KEY',
-  // Additional configuration options
+// Initialize BugsterTracker before starting the application
+const bugster = new BugsterTracker({
+  apiKey: process.env.BUGSTER_KEY,
+  endpoint: "https://i.bugster.app",
 });
 
+// Start the application by loading the main module
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 ```
 
-Replace `'YOUR_BUGSTER_API_KEY'` with your actual Bugster project ID.
-
-## Step 3: Creating a Bugster Service
-
-To make Bugster SDK easily accessible throughout your Angular application, create a service that wraps the SDK functionality.
-
-Generate a new service using the Angular CLI:
-
-```bash
-ng generate service bugster
-```
-
-Open the generated `src/app/bugster.service.ts` file and add the following code:
-
-```typescript
-import { Injectable } from '@angular/core';
-import BugsterTracker from '@bugster/bugster-js';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class BugsterService {
-  constructor() {}
-
-  captureEvent(eventName: string, eventData: any) {
-    BugsterTracker.captureEvent(eventName, eventData);
-  }
-
-  // Add other Bugster SDK methods as needed
-}
-```
-
-## Step 4: Using Bugster SDK in Components
-
-Now you can use the Bugster service in your Angular components. Here's an example of how to use it in a component:
-
-```typescript
-import { Component } from '@angular/core';
-import { BugsterService } from './bugster.service';
-
-@Component({
-  selector: 'app-example',
-  template: `
-    <button (click)="onButtonClick()">Click me</button>
-  `
-})
-export class ExampleComponent {
-  constructor(private bugsterService: BugsterService) {}
-
-  onButtonClick() {
-    this.bugsterService.captureEvent('button_click', { componentName: 'ExampleComponent' });
-    // Your button click logic here
-  }
-}
-```
-
-## Step 5: Handling Angular-Specific Events
-
-Angular has its own event system, which Bugster SDK can integrate with. Here's how to capture Angular-specific events:
-
-```typescript
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { BugsterService } from './bugster.service';
-
-@Component({
-  selector: 'app-form-example',
-  template: `
-    <form (ngSubmit)="onSubmit()">
-      <input #nameInput type="text" name="name">
-      <button type="submit">Submit</button>
-    </form>
-  `
-})
-export class FormExampleComponent implements AfterViewInit {
-  @ViewChild('nameInput') nameInput: ElementRef;
-
-  constructor(private bugsterService: BugsterService) {}
-
-  ngAfterViewInit() {
-    this.nameInput.nativeElement.addEventListener('input', (event) => {
-      this.bugsterService.captureEvent('input_change', { 
-        inputName: 'name', 
-        value: event.target.value 
-      });
-    });
-  }
-
-  onSubmit() {
-    this.bugsterService.captureEvent('form_submit', { formName: 'exampleForm' });
-    // Your form submission logic here
-  }
-}
-```
-
-## Step 6: Configuring for Different Environments
-
-It's a good practice to configure Bugster SDK differently for various environments (development, staging, production). You can use Angular's environment files for this purpose.
-
-Update your `src/environments/environment.ts` and `src/environments/environment.prod.ts` files:
-
-```typescript
-export const environment = {
-  production: false, // or true for environment.prod.ts
-  bugsterConfig: {
-    apiKey: 'YOUR_BUGSTER_API_KEY',
-    captureInDev: true, // set to false in production
-    // Other environment-specific settings
-  }
-};
-```
-
-Then, update your `main.ts`:
-
-```typescript
-import { environment } from './environments/environment';
-
-BugsterTracker.init(environment.bugsterConfig);
-```
-
-## Best Practices for Angular Integration
-
-1. **Use Dependency Injection**: Utilize Angular's dependency injection system to make Bugster SDK available throughout your application.
-
-2. **Lazy Loading**: If you're using lazy-loaded modules, ensure Bugster SDK is initialized before lazy loading occurs.
-
-3. **Error Handling**: Integrate Bugster SDK with Angular's error handling to capture and report errors:
-
-   ```typescript
-   import { ErrorHandler, Injectable } from '@angular/core';
-   import BugsterTracker from '@bugster/bugster-js';
-
-   @Injectable()
-   export class BugsterErrorHandler implements ErrorHandler {
-     handleError(error: any) {
-       BugsterTracker.captureError(error);
-       console.error('An error occurred:', error);
-     }
-   }
-
-   // In your AppModule:
-   providers: [
-     { provide: ErrorHandler, useClass: BugsterErrorHandler }
-   ]
-   ```
-
-4. **Route Changes**: Capture route changes to track user navigation:
-
-   ```typescript
-   import { Router, NavigationEnd } from '@angular/router';
-   import { filter } from 'rxjs/operators';
-
-   constructor(private router: Router, private bugsterService: BugsterService) {
-     this.router.events.pipe(
-       filter(event => event instanceof NavigationEnd)
-     ).subscribe((event: NavigationEnd) => {
-       this.bugsterService.captureEvent('route_change', { path: event.urlAfterRedirects });
-     });
-   }
-   ```
-
-## Troubleshooting
-
-- **SDK Not Initializing**: Ensure that the SDK is imported and initialized in `main.ts` before bootstrapping the Angular application.
-- **Events Not Captured**: Check if the Bugster service is properly injected and used in your components.
-- **Performance Issues**: If you notice performance degradation, consider adjusting the SDK's capture settings or using more selective event capturing.
+---
 
 ## Conclusion
 
@@ -216,5 +65,4 @@ You've now successfully integrated Bugster SDK into your Angular application. Th
 
 For more advanced usage and configuration options, refer to the [Bugster SDK API Reference](/api-reference) and the [Advanced Configuration Guide](/advanced-configuration).
 
-If you encounter any issues or have questions, don't hesitate to [contact our support team](https://bugster.app/support) or check our [community forums](https://community.bugster.app).
-
+If you encounter any issues or have questions, don't hesitate to [contact our support team](https://bugster.app/contact).

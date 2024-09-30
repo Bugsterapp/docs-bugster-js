@@ -4,272 +4,70 @@ description: 'Learn how to integrate Bugster SDK into your Svelte application'
 icon: 's'
 ---
 
-## Introduction
+## Integrate Bugster SDK with Svelte
 
-This guide will walk you through the process of integrating Bugster SDK into your Svelte application. By following these steps, you'll be able to add automated testing capabilities to your Svelte project, leveraging Bugster SDK's powerful features.
+This guide will help you integrate Bugster SDK into your Svelte project and start using its automated testing capabilities.
+
+---
 
 ## Prerequisites
 
-Before you begin, ensure you have the following:
+Before getting started, ensure you have:
 
-- An existing Svelte project (version 3.0 or later)
+- A Svelte project set up (version 3.0 or later)
 - Node.js and npm installed
-- A Bugster SDK account and project ID
+- A Bugster account with an API key
 
-## Step 1: Installation
+---
 
-First, install the Bugster SDK package using npm:
+## Step 1: Install the Bugster SDK
+
+Install Bugster SDK using your package manager:
 
 ```bash
-npm install @bugster/bugster-js --save
+npm i @bugster/bugster-js
 ```
 
-## Step 2: Initialization
+---
 
-To initialize Bugster SDK in your Svelte application, we'll create a new component that will handle the SDK initialization. This ensures that the SDK is initialized as early as possible in your application's lifecycle.
+## Step 2: Add Environment Variables
 
-Create a new file `src/lib/BugsterInit.svelte`:
+Add your environment variables to your `.env.local` file and your hosting provider (such as Vercel, Netlify, AWS).
 
-```html
-<script>
-  import { onMount } from 'svelte';
-  import BugsterTracker from '@bugster/bugster-js';
-
-  onMount(() => {
-    BugsterTracker.init({
-      apiKey: 'YOUR_BUGSTER_API_KEY',
-      // Additional configuration options
-    });
-  });
-</script>
+```bash
+BUGSTER_KEY=YOUR_API_KEY
 ```
 
-Replace `'YOUR_BUGSTER_API_KEY'` with your actual Bugster project ID.
+---
 
-Now, import and use this component in your main `App.svelte` file:
+## Step 3: Initialize Bugster SDK
 
-```html
-<script>
-  import BugsterInit from './lib/BugsterInit.svelte';
-  // Your other imports
-</script>
+To initialize Bugster SDK in your Svelte application, follow these steps:
 
-<BugsterInit />
+1. Import the ```BugsterTracker``` into your Svelte component.
+2. Initialize the SDK inside the ```onMount``` lifecycle function to ensure it runs after the component mounts.
 
-<!-- Your app content -->
-```
-
-## Step 3: Creating a Bugster Store
-
-To make Bugster SDK easily accessible throughout your Svelte application, create a store that wraps the SDK functionality.
-
-Create a new file `src/lib/bugsterStore.js`:
+Here is how you can do it:
 
 ```javascript
-import { writable } from 'svelte/store';
-import BugsterTracker from '@bugster/bugster-js';
+import { BugsterTracker } from '@bugster/bugster-js';
+import { onMount } from 'svelte';
 
-function createBugsterStore() {
-  const { subscribe, set } = writable(null);
+let bugster = null;
 
-  return {
-    subscribe,
-    captureEvent: (eventName, eventData) => {
-      BugsterTracker.captureEvent(eventName, eventData);
-    },
-    captureError: (error) => {
-      BugsterTracker.captureError(error);
-    },
-    // Add other Bugster SDK methods as needed
-  };
-}
-
-export const bugster = createBugsterStore();
-```
-
-## Step 4: Using Bugster SDK in Components
-
-Now you can use the Bugster store in your Svelte components. Here's an example:
-
-```html
-<script>
-  import { bugster } from '../lib/bugsterStore';
-
-  function handleClick() {
-    bugster.captureEvent('button_click', { componentName: 'ExampleComponent' });
-    // Your button click logic here
-  }
-</script>
-
-<button on:click={handleClick}>Click me</button>
-```
-
-## Step 5: Handling Svelte-Specific Events
-
-Svelte has its own event system and lifecycle methods. Here's how to capture Svelte-specific events:
-
-```html
-<script>
-  import { onMount, onDestroy } from 'svelte';
-  import { bugster } from '../lib/bugsterStore';
-
-  let inputValue = '';
-
-  function handleInput(event) {
-    inputValue = event.target.value;
-    bugster.captureEvent('input_change', { 
-      inputName: 'exampleInput', 
-      value: inputValue 
+onMount(() => {
+  if (typeof window !== 'undefined' && !bugster) {
+    bugster = new BugsterTracker({
+      apiKey: process.env.BUGSTER_KEY,
+      endpoint: "https://i.bugster.app",
     });
   }
-
-  onMount(() => {
-    bugster.captureEvent('component_mounted', { componentName: 'ExampleComponent' });
-  });
-
-  onDestroy(() => {
-    bugster.captureEvent('component_destroyed', { componentName: 'ExampleComponent' });
-  });
-</script>
-
-<input bind:value={inputValue} on:input={handleInput} />
+});
 ```
 
-## Step 6: Integrating with SvelteKit (if applicable)
+This will ensure the SDK is properly initialized after the component mounts.
 
-If you're using SvelteKit, you can initialize Bugster SDK in a layout file to ensure it's available across all routes.
-
-Create or modify `src/routes/__layout.svelte`:
-
-```html
-<script>
-  import { onMount } from 'svelte';
-  import BugsterTracker from '@bugster/bugster-js';
-
-  onMount(() => {
-    BugsterTracker.init({
-      apiKey: 'YOUR_BUGSTER_API_KEY',
-      // Additional configuration options
-    });
-  });
-</script>
-
-<slot />
-```
-
-## Step 7: Error Handling
-
-To capture unhandled errors, you can create a custom error boundary component:
-
-```html
-<!-- src/lib/ErrorBoundary.svelte -->
-<script>
-  import { onError } from 'svelte';
-  import { bugster } from './bugsterStore';
-
-  let error = null;
-
-  onError((e) => {
-    error = e;
-    bugster.captureError(e);
-  });
-</script>
-
-{#if error}
-  <p>An error occurred: {error.message}</p>
-{:else}
-  <slot />
-{/if}
-```
-
-Use this error boundary in your components:
-
-```html
-<script>
-  import ErrorBoundary from '../lib/ErrorBoundary.svelte';
-</script>
-
-<ErrorBoundary>
-  <!-- Your component content -->
-</ErrorBoundary>
-```
-
-## Best Practices for Svelte Integration
-
-1. **Reactive Statements**: Use Svelte's reactive statements to capture important state changes:
-
-   ```html
-   <script>
-     import { bugster } from '../lib/bugsterStore';
-     
-     let count = 0;
-     
-     $: if (count > 10) {
-       bugster.captureEvent('count_exceeded', { count });
-     }
-   </script>
-
-   <button on:click={() => count++}>Increment</button>
-   ```
-
-2. **Custom Actions**: Utilize Svelte actions to add Bugster tracking to DOM elements:
-
-   ```javascript
-   function trackHover(node, params) {
-     function enter() {
-       bugster.captureEvent('element_hover', { ...params, type: 'enter' });
-     }
-     function leave() {
-       bugster.captureEvent('element_hover', { ...params, type: 'leave' });
-     }
-     
-     node.addEventListener('mouseenter', enter);
-     node.addEventListener('mouseleave', leave);
-     
-     return {
-       destroy() {
-         node.removeEventListener('mouseenter', enter);
-         node.removeEventListener('mouseleave', leave);
-       }
-     };
-   }
-   ```
-
-   Usage:
-   ```html
-   <div use:trackHover="{{ elementId: 'example' }}">Hover me</div>
-   ```
-
-3. **Stores for Global State**: If you're using Svelte stores for global state management, consider integrating Bugster SDK to track important state changes.
-
-4. **Route Changes**: For SvelteKit applications, track route changes using the `$page` store:
-
-   ```html
-   <script>
-     import { page } from '$app/stores';
-     import { bugster } from '../lib/bugsterStore';
-
-     $: {
-       bugster.captureEvent('route_change', { path: $page.url.pathname });
-     }
-   </script>
-   ```
-
-## Troubleshooting
-
-- **SDK Not Initializing**: Ensure that the BugsterInit component is properly imported and used in your main App component.
-- **Events Not Captured**: Check if the Bugster store is correctly imported and used in your components.
-- **Performance Issues**: If you notice performance degradation, consider using Svelte's `tick` function to defer Bugster SDK calls:
-
-  ```javascript
-  import { tick } from 'svelte';
-
-  async function handleEvent() {
-    // Your event logic
-    await tick();
-    bugster.captureEvent('example_event', { /* event data */ });
-  }
-  ```
+---
 
 ## Conclusion
 
@@ -277,5 +75,4 @@ You've now successfully integrated Bugster SDK into your Svelte application. Thi
 
 For more advanced usage and configuration options, refer to the [Bugster SDK API Reference](/api-reference) and the [Advanced Configuration Guide](/advanced-configuration).
 
-If you encounter any issues or have questions, don't hesitate to [contact our support team](https://bugster.app/support) or check our [community forums](https://community.bugster.app).
-
+If you encounter any issues or have questions, don't hesitate to [contact our support team](https://bugster.app/contact).
