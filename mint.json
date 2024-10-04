@@ -33,11 +33,6 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://docs.bugster.app/introduction"
-    },
-    {
       "name": "API Reference",
       "icon": "server",
       "url": "https://docs.bugster.app/api-reference/introduction"
@@ -103,14 +98,6 @@
         "test-execution/running-locally",
         "test-execution/cloud-execution",
         "test-execution/cicd-integration"
-      ]
-    },
-    {
-      "group": "Best Practices",
-      "pages": [
-        "best-practices/optimizing-test-coverage",
-        "best-practices/mantaining-test",
-        "best-practices/troubleshoot"
       ]
     },
     {
