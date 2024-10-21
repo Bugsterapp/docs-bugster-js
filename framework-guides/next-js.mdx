@@ -54,13 +54,16 @@ import { BugsterTracker } from '@bugster/bugster-js';
 let bugster: BugsterTracker | null = null; 
 
 useEffect(() => {
-  if (typeof window !== 'undefined' && !bugster) {
-    bugster = new BugsterTracker({
-      apiKey: NEXT_PUBLIC_BUGSTER_KEY,
-      endpoint: "https://i.bugster.app",
-    });
-  }
-}, []);
+    if (
+      typeof window !== "undefined" &&
+      process.env.NEXT_PUBLIC_BUGSTER_API_KEY
+    ) {
+      bugster = new BugsterTracker({
+        apiKey: process.env.NEXT_PUBLIC_BUGSTER_API_KEY,
+        endpoint: "https://i.bugster.app",
+      });
+    }
+  }, []);
 ```
 
 ### App Router
