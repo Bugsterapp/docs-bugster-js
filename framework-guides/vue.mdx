@@ -59,6 +59,31 @@ const bugsterPlugin = {
 export default bugsterPlugin;
 ```
 
+Or you can do it for `Vue 2`:
+
+```javascript
+// src/plugins/bugsterPlugin.js
+import { BugsterTracker } from '@bugster/bugster-js';
+
+const bugsterPlugin = {
+        install(Vue, options) {
+          // Initialize BugsterTracker
+          const bugster = new BugsterTracker({
+            apiKey: options.apiKey || 'YOUR_API_KEY',
+            endpoint: 'https://i.bugster.app',
+          });
+
+          // Set Bugster on the Vue prototype
+          Vue.prototype.$bugster = bugster;
+
+          // Optional: you can also provide the bugster for injection elsewhere
+          Vue.prototype.$bugsterInstance = bugster;
+        },
+      };
+
+      export default bugsterPlugin;
+```
+
 ---
 
 ## Step 3: Initialize the Bugster Plugin
@@ -78,6 +103,24 @@ app.use(bugsterPlugin, {
 });
 
 app.mount('#app');
+```
+
+Or you can do it for `Vue 2`:
+
+```javascript
+// src/main.js
+import Vue from 'vue';
+import App from './App.vue';
+import bugsterPlugin from './plugins/bugsterPlugin';
+
+Vue.use(bugsterPlugin, {
+  apiKey: 'YOUR_API_KEY',
+  endpoint: 'https://i.bugster.app', 
+});
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app');
 ```
 
 ---
