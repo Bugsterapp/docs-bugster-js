@@ -70,7 +70,7 @@ useEffect(() => {
 
 For the App Router, initialize Bugster SDK in a client-side component.
 
-Create a new file `components/BugsterProvider.js`:
+Create a new file `app/components/BugsterProvider.tsx`:
 
 ```typescript
 "use client";
@@ -99,7 +99,7 @@ export function BugsterProvider({ apiKey, children }: BugsterProviderProps) {
 }
 ```
 
-Then, import and use this component in your root layout (`app/layout.js`):
+Then, import and use this component in your root layout (`app/layout.tsx`):
 
 ```typescript
 import { BugsterProvider } from "./components/BugsterProvider";
