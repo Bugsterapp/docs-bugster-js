@@ -50,7 +50,7 @@
             "platform/test-flows/suggested-flows",
             "platform/test-flows/flow-executions",
             "platform/test-flows/flow-groups",
-            "test-flows/project-settings"
+            "platform/test-flows/project-settings"
           ]
         }
       ]

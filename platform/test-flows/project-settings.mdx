@@ -1,37 +1,119 @@
 ---
 title: 'Project Settings'
 description: 'Configure and manage your project settings'
-icon: 'settings'
+icon: 'gear'
 ---
 
-## Project Settings
+In this guide, we'll explore the different sections of Bugster and how to use them effectively:
 
-Configure your project settings to customize Bugster for your specific needs.
+- [Existing Flows](/platform/test-flows/existing-flows) - Manage and organize your test flows
+- [Suggested Flows](/platform/test-flows/suggested-flows) - Discover AI-generated test suggestions
+- [Flow Executions](/platform/test-flows/flow-executions) - Monitor and analyze test executions
+- [Flow Groups](/platform/test-flows/flow-groups) - Organize flows into logical groups
+
+Below you'll find all the configuration options available in your project settings:
 
 ## General Settings
 
-- Project name and description
-- Environment configuration
-- Team access and permissions
-- Notification preferences
+### Project Information
+- **Project Name**: Customize your project's display name
+- **Description**: Add a detailed description of your project
+- **Project ID**: View your unique project identifier (used in SDK integration)
+
+### Environment Configuration
+- **Environment Variables**: Manage environment-specific settings
+- **API Keys**: View and manage your project's API keys
+- **Base URLs**: Configure URLs for different environments (development, staging, production)
+
+## Team Management
+
+### Access Control
+- **Team Members**: Add, remove, or modify team member access
+- **Roles and Permissions**: Define custom roles with specific permissions
+- **Access Logs**: Track who accessed or modified project settings
+
+### Collaboration Settings
+- **Sharing Options**: Configure default sharing settings for test assets
+- **Comment Notifications**: Set up notification preferences for comments
+- **Review Requirements**: Set up mandatory review processes for test changes
+
+## Integration Settings
+
+### Version Control
+- **GitHub Integration**: Connect your GitHub repositories
+- **GitLab Integration**: Set up GitLab connectivity
+- **Bitbucket Integration**: Configure Bitbucket access
+
+### CI/CD Pipeline
+- **Pipeline Configuration**: Set up automated test runs
+- **Webhook Settings**: Configure webhooks for external services
+- **Build Status Integration**: Set up build status reporting
+
+### Third-Party Tools
+- **Jira Integration**: Link test cases with Jira issues
+- **Slack Integration**: Configure test result notifications
+- **Custom Webhooks**: Set up custom integrations
+
+## Notification Preferences
+
+### Email Notifications
+- **Test Results**: Configure email alerts for test results
+- **System Updates**: Get notified about platform updates
+- **Security Alerts**: Receive security-related notifications
+
+### In-App Notifications
+- **Dashboard Alerts**: Configure dashboard notification settings
+- **Mention Notifications**: Set up @mention notification preferences
+- **Status Updates**: Get notified about test status changes
 
 ## Test Configuration
 
-- Default test settings
-- Execution environments
-- Retry policies
-- Timeout settings
+### Default Test Settings
+- **Timeout Settings**: Configure default test timeout values
+- **Retry Policies**: Set up automatic retry policies for flaky tests
+- **Screenshot Settings**: Configure when and how to capture screenshots
 
-## Integrations
+### Test Organization
+- **Default Labels**: Set up default labels for new tests
+- **Folder Structure**: Configure default folder organization
+- **Naming Conventions**: Set up test naming patterns
 
-- CI/CD configuration
-- Version control
-- Issue tracking
-- Notification services
+## Security Settings
+
+### Data Privacy
+- **Data Retention**: Configure how long to keep test data
+- **IP Filtering**: Set up IP-based access restrictions
+- **Sensitive Data Handling**: Configure data masking rules
+
+### Authentication
+- **SSO Configuration**: Set up Single Sign-On
+- **2FA Requirements**: Configure two-factor authentication rules
+- **Session Management**: Set session timeout and security policies
 
 ## Advanced Settings
 
-- Custom variables
-- Network configuration
-- Security settings
-- Performance options 
+### Performance
+- **Resource Limits**: Configure resource usage limits
+- **Concurrency Settings**: Set maximum concurrent test executions
+- **Data Usage**: Monitor and configure data usage limits
+
+### Customization
+- **Custom Fields**: Add custom fields to test cases
+- **API Configuration**: Configure API-specific settings
+- **Advanced Features**: Enable/disable beta features
+
+## Troubleshooting
+
+If you encounter any issues while configuring your project settings:
+
+1. Check our [troubleshooting guide](/troubleshooting)
+2. Review the [API documentation](/api-reference)
+3. Contact our [support team](mailto:support@bugster.app)
+
+## Best Practices
+
+- Regularly review and update your project settings
+- Document any custom configurations
+- Keep team member access up to date
+- Regularly audit security settings
+- Test integrations after configuration changes 
