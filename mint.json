@@ -26,20 +26,11 @@
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
-    },
-    {
       "name": "Platform",
       "url": "platform"
     }
   ],
   "anchors": [
-    {
-      "name": "API Reference",
-      "icon": "server",
-      "url": "https://docs.bugster.app/api-reference/introduction"
-    },
     {
       "name": "GitHub",
       "icon": "github",
