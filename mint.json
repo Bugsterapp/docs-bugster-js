@@ -42,17 +42,12 @@
       "icon": "rocket",
       "pages": [
         "platform/introduction",
-        {
-          "group": "Platform Sections",
-          "icon": "ray",
-          "pages": [
-            "platform/test-flows/existing-flows",
-            "platform/test-flows/suggested-flows",
-            "platform/test-flows/flow-executions",
-            "platform/test-flows/flow-groups",
-            "platform/test-flows/project-settings"
-          ]
-        }
+        "platform/sections/existing-flows",
+        "platform/sections/suggested-flows",
+        "platform/sections/flow-executions",
+        "platform/sections/flow-groups",
+        "platform/sections/project-settings"
+
       ]
     },
     {
@@ -77,11 +72,6 @@
       "group": "Integrations",
       "icon": "plug",
       "pages": ["integrations/github"]
-    },
-    {
-      "group": "Security & Privacy",
-      "icon": "shield",
-      "pages": ["security/data-privacy", "security/code-privacy", "security/performance"]
     }
   ],
   "footerSocials": {
