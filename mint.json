@@ -11,7 +11,7 @@
     "dark": "#363D61",
     "light": "#C6CBEB",
     "background": {
-    "dark":"#17171b"
+      "dark": "#17171b"
     }
   },
   "topbarLinks": [
@@ -24,124 +24,73 @@
     "name": "Dashboard",
     "url": "https://bugster.app/dashboard"
   },
-  "tabs": [
-    {
-      "name": "Platform",
-      "url": "platform"
-    }
-  ],
   "anchors": [
     {
-      "name": "GitHub",
-      "icon": "github",
-      "url": "https://github.com/Bugsterapp/bugster-js"
+      "name": "Documentation",
+      "icon": "book-open",
+      "url": "introduction"
+    },
+    {
+      "name": "Discord",
+      "icon": "discord",
+      "url": "https://dub.sh/TKZymDH"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://bugster.app/blog"
+      "url": "https://www.bugster.dev/blog"
     }
   ],
   "navigation": [
     {
-      "group": "Introduction",
-      "pages": [
-        "introduction/bugster-sdk",
-        "introduction/how-it-works",
-         "introduction/key-benefits"
-      ]
-    },
-    {
       "group": "Get Started",
       "pages": [
-        "get-started/prerequesites",
+        "introduction",
+        "quickstart",
         "get-started/installation",
-        "get-started/quickstart-guide"
+        "resources/pricing",
+        "resources/changelog"
       ]
     },
     {
-      "group": "Core Concepts",
+      "group": "Platform",
       "pages": [
-        "core-concepts/user-stories",
-        "core-concepts/test-generation",
-        "core-concepts/test-management"
+        "platform/introduction",
+        {
+          "group": "Test Generation",
+          "pages": ["platform/test-generation/introduction"]
+        },
+        {
+          "group": "Test Management",
+          "pages": ["platform/test-management/introduction"]
+        },
+        {
+          "group": "Test Execution",
+          "pages": ["platform/test-execution/introduction"]
+        }
       ]
     },
     {
-      "group": "Framework guides",
+      "group": "Apps & Integrations",
       "pages": [
-        "framework-guides/overview",
-        "framework-guides/angular",
-        "framework-guides/next-js",
-        "framework-guides/svelte",
-        "framework-guides/react",
-        "framework-guides/vue"
+        "integrations/overview",
+        "integrations/github",
+        "integrations/slack"
       ]
     },
     {
-      "group": "Test Management",
+      "group": "Security & Privacy",
       "pages": [
-        "test-management/view-user-stories",
-        "test-management/accept-and-modify",
-        "test-management/group-and-organize"
-      ]
-    },
-    {
-      "group": "Test Execution",
-      "pages": [
-        "test-execution/running-locally",
-        "test-execution/cloud-execution",
-        "test-execution/cicd-integration"
-      ]
-    },
-    {
-      "group": "Resources",
-      "pages": [
-        "resources/privacy",
-        "resources/performance",
-         "resources/data-privacy",
-         "resources/code-privacy"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction",
-        "api-reference/customization",
-        "api-reference/advanced-configuration"
-      ]
-    },
-    {
-      "group": "Introduction",
-      "pages": [
-        "platform/introduction"
-      ]
-    },
-    {
-      "group": "Test Generation",
-      "pages": [
-        "platform/test-generation/introduction",
-        "platform/test-generation/ai-prompt",
-        "platform/test-generation/sanity",
-        "platform/test-generation/chrome-extension"
-      ]
-    },
-    {
-      "group": "Test Management",
-      "pages": [
-        "platform/test-management/introduction"
-      ]
-    },
-    {
-      "group": "Test Execution",
-      "pages": [
-        "platform/test-execution/introduction"
+        "resources/data-privacy",
+        "resources/code-privacy",
+        "resources/performance"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/Bugsterdotapp",
+    "x": "https://x.com/bugsterdev",
     "github": "https://github.com/Bugsterapp",
-    "linkedin": "https://www.linkedin.com/company/bugsterdev"
+    "linkedin": "https://www.linkedin.com/company/bugsterdev",
+    "discord": "https://dub.sh/TKZymDH"
   }
 }
