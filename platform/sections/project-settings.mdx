@@ -4,116 +4,67 @@ description: 'Configure and manage your project settings'
 icon: 'gear'
 ---
 
-In this guide, we'll explore the different sections of Bugster and how to use them effectively:
+The Project Settings section in Bugster provides a comprehensive suite of configuration options to customize and optimize your testing environment. In this documentation, we'll walk through each tab of the project settings, explaining their functionality and how to make the most of each feature.
 
-- [Existing Flows](/platform/test-flows/existing-flows) - Manage and organize your test flows
-- [Suggested Flows](/platform/test-flows/suggested-flows) - Discover AI-generated test suggestions
-- [Flow Executions](/platform/test-flows/flow-executions) - Monitor and analyze test executions
-- [Flow Groups](/platform/test-flows/flow-groups) - Organize flows into logical groups
+Let's explore each tab in detail:
 
-Below you'll find all the configuration options available in your project settings:
+## Project Settings Tabs
 
-## General Settings
+### Test Management
+Configure your testing environment and browser settings to ensure consistent test execution across your project.
 
-### Project Information
-- **Project Name**: Customize your project's display name
-- **Description**: Add a detailed description of your project
-- **Project ID**: View your unique project identifier (used in SDK integration)
+- **Browser Configuration**: Select which browsers to use for testing (Chromium, Firefox, etc.)
+- **Screen Size**: Set default width and height for testing viewport
+- **Environment URLs**: Configure and manage URLs for production and development environments
 
-### Environment Configuration
-- **Environment Variables**: Manage environment-specific settings
-- **API Keys**: View and manage your project's API keys
-- **Base URLs**: Configure URLs for different environments (development, staging, production)
+<video width="100%" controls>
+  <source src="/media/test-management.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
-## Team Management
+### Features
+Visualize and manage your application's structure through an interactive flow graph.
 
-### Access Control
-- **Team Members**: Add, remove, or modify team member access
-- **Roles and Permissions**: Define custom roles with specific permissions
-- **Access Logs**: Track who accessed or modified project settings
+- **Feature Graph**: View your application's structure with base URL and all sections
+- **Custom Features**: Add features that weren't automatically detected
+- **Edit Features**: Modify names and properties of existing features
 
-### Collaboration Settings
-- **Sharing Options**: Configure default sharing settings for test assets
-- **Comment Notifications**: Set up notification preferences for comments
-- **Review Requirements**: Set up mandatory review processes for test changes
+<video width="100%" controls>
+  <source src="/media/features-graph.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
-## Integration Settings
+### Credentials
+Manage testing credentials for your application.
 
-### Version Control
-- **GitHub Integration**: Connect your GitHub repositories
-- **GitLab Integration**: Set up GitLab connectivity
-- **Bitbucket Integration**: Configure Bitbucket access
+- **Add Credentials**: Create new testing accounts
+- **Edit Credentials**: Modify existing credential sets
+- **Default Selection**: Choose default credentials for your project
 
-### CI/CD Pipeline
-- **Pipeline Configuration**: Set up automated test runs
-- **Webhook Settings**: Configure webhooks for external services
-- **Build Status Integration**: Set up build status reporting
+<video width="100%" controls>
+  <source src="/media/credentials.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
-### Third-Party Tools
-- **Jira Integration**: Link test cases with Jira issues
-- **Slack Integration**: Configure test result notifications
-- **Custom Webhooks**: Set up custom integrations
+### SDK
+The SDK section provides everything you need to integrate Bugster into your frontend application. Here you'll find your API key and comprehensive installation guides for the most common frameworks.
 
-## Notification Preferences
+<video width="100%" controls>
+  <source src="/media/sdk-1.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
-### Email Notifications
-- **Test Results**: Configure email alerts for test results
-- **System Updates**: Get notified about platform updates
-- **Security Alerts**: Receive security-related notifications
+Once you've accessed your API key, you'll need to integrate the SDK into your project. Visit our [SDK Integration Guide](/sdk) for detailed instructions on implementing the code snippet for your specific framework. After completing the integration, return here to verify your setup.
 
-### In-App Notifications
-- **Dashboard Alerts**: Configure dashboard notification settings
-- **Mention Notifications**: Set up @mention notification preferences
-- **Status Updates**: Get notified about test status changes
+After adding the code snippet to your project, you can verify the integration status by clicking the refresh button:
 
-## Test Configuration
+![SDK Status Refresh](/media/sdk-load.gif)
 
-### Default Test Settings
-- **Timeout Settings**: Configure default test timeout values
-- **Retry Policies**: Set up automatic retry policies for flaky tests
-- **Screenshot Settings**: Configure when and how to capture screenshots
+Once properly configured, you'll have full control over your SDK implementation. You can remotely activate or deactivate the SDK at any time, which is useful when you want to temporarily stop event collection:
 
-### Test Organization
-- **Default Labels**: Set up default labels for new tests
-- **Folder Structure**: Configure default folder organization
-- **Naming Conventions**: Set up test naming patterns
+<video width="100%" controls>
+  <source src="/media/sdk-2.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
-## Security Settings
-
-### Data Privacy
-- **Data Retention**: Configure how long to keep test data
-- **IP Filtering**: Set up IP-based access restrictions
-- **Sensitive Data Handling**: Configure data masking rules
-
-### Authentication
-- **SSO Configuration**: Set up Single Sign-On
-- **2FA Requirements**: Configure two-factor authentication rules
-- **Session Management**: Set session timeout and security policies
-
-## Advanced Settings
-
-### Performance
-- **Resource Limits**: Configure resource usage limits
-- **Concurrency Settings**: Set maximum concurrent test executions
-- **Data Usage**: Monitor and configure data usage limits
-
-### Customization
-- **Custom Fields**: Add custom fields to test cases
-- **API Configuration**: Configure API-specific settings
-- **Advanced Features**: Enable/disable beta features
-
-## Troubleshooting
-
-If you encounter any issues while configuring your project settings:
-
-1. Check our [troubleshooting guide](/troubleshooting)
-2. Review the [API documentation](/api-reference)
-3. Contact our [support team](mailto:support@bugster.app)
-
-## Best Practices
-
-- Regularly review and update your project settings
-- Document any custom configurations
-- Keep team member access up to date
-- Regularly audit security settings
-- Test integrations after configuration changes 
+This remote activation/deactivation feature gives you complete control over when Bugster collects events from your application, allowing you to manage data collection according to your needs.
