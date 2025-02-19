@@ -1,0 +1,52 @@
+---
+title: 'GitHub Integration'
+description: 'Connect Bugster with your GitHub repositories'
+icon: 'github'
+---
+
+## GitHub Integration
+
+Integrate Bugster with GitHub to streamline your testing workflow and maintain test cases alongside your code.
+
+## Setup
+
+1. Install Bugster GitHub App
+2. Configure repository access
+3. Set up webhooks
+4. Configure test automation
+
+## Features
+
+- Automated test runs on PRs
+- Test status checks
+- Issue creation for failures
+- Test history in PR comments
+
+## Configuration
+
+```javascript
+{
+  "github": {
+    "enabled": true,
+    "repositories": ["owner/repo"],
+    "autorun": {
+      "onPR": true,
+      "onPush": false
+    }
+  }
+}
+```
+
+## Best Practices
+
+- PR integration strategy
+- Status check configuration
+- Issue management
+- Team collaboration
+
+## Troubleshooting
+
+- Common integration issues
+- Permission problems
+- Webhook errors
+- Status check failures 

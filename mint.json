@@ -26,11 +26,6 @@
   },
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open",
-      "url": "introduction"
-    },
-    {
       "name": "Discord",
       "icon": "discord",
       "url": "https://dub.sh/TKZymDH"
@@ -43,48 +38,50 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "get-started/installation",
-        "resources/pricing",
-        "resources/changelog"
-      ]
-    },
-    {
       "group": "Platform",
+      "icon": "rocket",
       "pages": [
         "platform/introduction",
         {
-          "group": "Test Generation",
-          "pages": ["platform/test-generation/introduction"]
-        },
-        {
-          "group": "Test Management",
-          "pages": ["platform/test-management/introduction"]
-        },
-        {
-          "group": "Test Execution",
-          "pages": ["platform/test-execution/introduction"]
+          "group": "Platform Sections",
+          "icon": "ray",
+          "pages": [
+            "platform/test-flows/existing-flows",
+            "platform/test-flows/suggested-flows",
+            "platform/test-flows/flow-executions",
+            "platform/test-flows/flow-groups",
+            "test-flows/project-settings"
+          ]
         }
       ]
     },
     {
-      "group": "Apps & Integrations",
+      "group": "Bugster SDK",
+      "icon": "code",
       "pages": [
-        "integrations/overview",
-        "integrations/github",
-        "integrations/slack"
+        "sdk/installation",
+        {
+          "group": "Framework Guides",
+          "icon": "brackets-curly",
+          "pages": [
+            "framework-guides/react",
+            "framework-guides/next-js",
+            "framework-guides/vue",
+            "framework-guides/angular",
+            "framework-guides/svelte"
+          ]
+        }
       ]
     },
     {
+      "group": "Integrations",
+      "icon": "plug",
+      "pages": ["integrations/github"]
+    },
+    {
       "group": "Security & Privacy",
-      "pages": [
-        "resources/data-privacy",
-        "resources/code-privacy",
-        "resources/performance"
-      ]
+      "icon": "shield",
+      "pages": ["security/data-privacy", "security/code-privacy", "security/performance"]
     }
   ],
   "footerSocials": {
