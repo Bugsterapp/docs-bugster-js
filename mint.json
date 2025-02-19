@@ -71,7 +71,7 @@
     {
       "group": "Integrations",
       "icon": "plug",
-      "pages": ["integrations/github"]
+      "pages": ["integrations/github", "integrations/slack"]
     }
   ],
   "footerSocials": {
