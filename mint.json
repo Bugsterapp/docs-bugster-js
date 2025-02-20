@@ -17,12 +17,12 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:ignacio@bugster.app"
+      "url": "mailto:ignacio@bugster.dev"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://bugster.app/dashboard"
+    "url": "https://app.bugster.dev/"
   },
   "anchors": [
     {
