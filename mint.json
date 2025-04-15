@@ -47,7 +47,6 @@
         "platform/sections/flow-executions",
         "platform/sections/flow-groups",
         "platform/sections/project-settings"
-
       ]
     },
     {
@@ -66,6 +65,13 @@
             "framework-guides/svelte"
           ]
         }
+      ]
+    },
+    {
+      "group": "Guides",
+      "icon": "pencil",
+      "pages": [
+        "guides/writing-great-test-prompts"
       ]
     },
     {

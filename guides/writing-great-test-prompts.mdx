@@ -1,0 +1,129 @@
+<Tip>
+A good test prompt helps Bugster's testing agent understand what to do, where to start, and what to validate. The clearer your instructions, the faster and more reliable your automated test will be.
+</Tip>
+
+## What is a Prompt?
+
+When you create a test in Bugster, you'll be asked to define:
+
+<Info>
+- **Goal**: What should the agent do?
+- **Expected Result**: What should be true at the end?
+- **Login Required**: Does the flow require the user to be logged in?
+- **Entry URL**: Where should the test begin?
+</Info>
+
+Each one helps the agent run your tests accurately and adapt if your app changes.
+
+## Goal (Test Objective)
+
+**Definition**: The main objective of the test case.
+
+<Info>
+**What to include**:
+- Actions the agent should perform
+- Avoid describing validations here (leave that to Expected Result)
+- Be sequential, clear, and use actual UI labels when possible
+</Info>
+
+**Good Examples**:
+- Search for "Bug Tracking Software", navigate to a product page, and add it to favorites
+- Create a new test project and add a team member with Developer permissions
+- Access the help center, find an article about API integration, and submit feedback
+
+**Poor Example**:
+- "Test if order creation works"
+
+**Better Version**:
+- Open the Orders page, click "Create Order", choose shipping and payment method, add items to cart, and finalize the order
+
+## Expected Result (Validation)
+
+**Definition**: The outcome that should be true after the test completes.
+
+<Info>
+**What to include**:
+- A clear description of what success looks like
+- Visible messages, UI updates, or database state (if observable)
+</Info>
+
+**Good Examples**:
+- A confirmation notification should appear and the new team member should be visible in the team list with correct permissions
+- The system should display a "Password updated successfully" message and redirect to the login page
+
+**Poor Example**:
+- "It should work"
+
+**Better Version**:
+- A new order should appear in the order list with status "Confirmed"
+
+## Login Requirement
+
+<Info>
+If your flow requires login:
+- Select "This flow requires login"
+- You'll be able to pick credentials from your account settings
+- The agent will handle login automatically
+- **Note**: You don't need to include login steps in your Goal - just select the login requirement here
+
+If public:
+- Select "This is a public flow"
+</Info>
+
+## Entry URL (Starting Point)
+
+Use this field to skip navigation steps. If your test starts from a specific place (e.g. /orders), set it here so the agent doesn't waste time navigating.
+
+<Info>
+**Examples**:
+- /dashboard
+- /settings/team
+</Info>
+
+## Example: Detailed vs Vague
+
+### Detailed Prompt (Great)
+
+<Check>
+**Goal**:
+```plaintext
+Open the Orders page, click "New Order", choose the default shipping address, 
+select "Retail" as sales channel, pick "Credit Card" as payment method, 
+add a product with stock, click "Add to Cart", choose "Pickup" for delivery, 
+click "Create Order", confirm it, and check the Orders list to verify creation.
+```
+
+**Expected Result**:
+```plaintext
+A new order should appear in the order list with a unique order number 
+and status "Created".
+```
+</Check>
+
+### Vague Prompt (Still usable, less efficient)
+
+<Warning>
+**Goal**:
+```plaintext
+Create a new order and confirm it's in the list.
+```
+
+**Expected Result**:
+```plaintext
+A new order should appear in the order list with a unique order number 
+and status "Created".
+```
+
+The agent may still complete this, but it will take longer and might fail if the UI isn't intuitive.
+</Warning>
+
+## Final Tips
+
+<Tip>
+- Use real labels from your app (e.g. "Add to Cart", not "click the button")
+- Use clear sequences ("first", "then", "after that")
+- Avoid mixing validation with actions in the Goal section
+- If your test depends on other flows (e.g. login), consider chaining them in the Test Dependencies section (coming soon!)
+</Tip>
+
+With great prompts come great tests. Help the agent help you. 🚀 
