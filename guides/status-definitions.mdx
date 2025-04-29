@@ -19,13 +19,9 @@ You can click on the information icon (i) next to any status to get more details
   <Expandable title="Details">
     <ResponseField name="Visual" type="component">
       <div className="flex items-center gap-2">
-        <RefreshCw className="h-4 w-4 animate-spin" style={{ animationDuration: '1.5s' }} />
-        <span>Building Flow</span>
+        <RefreshCw className="h-4 w-4 animate-spin" style={{ animationDuration: '1.5s', color: '#353D61' }} />
+        <span style={{ color: '#353D61' }}>Building Flow</span>
       </div>
-    </ResponseField>
-    <ResponseField name="Colors" type="string">
-      Light Mode: #353D61
-      Dark Mode: #C6CBEB
     </ResponseField>
     <ResponseField name="Description" type="string">
       The agent is building your test flow from scratch.
@@ -41,13 +37,9 @@ You can click on the information icon (i) next to any status to get more details
   <Expandable title="Details">
     <ResponseField name="Visual" type="component">
       <div className="flex items-center gap-2">
-        <Hammer className="h-4 w-4" />
-        <span>Re-Validating Flow</span>
+        <Hammer className="h-4 w-4" style={{ color: '#353D61' }} />
+        <span style={{ color: '#353D61' }}>Re-Validating Flow</span>
       </div>
-    </ResponseField>
-    <ResponseField name="Colors" type="string">
-      Light Mode: #353D61
-      Dark Mode: #C6CBEB
     </ResponseField>
     <ResponseField name="Description" type="string">
       The agent detected something unusual and is revalidating the flow with a fresh check.
@@ -63,13 +55,9 @@ You can click on the information icon (i) next to any status to get more details
   <Expandable title="Details">
     <ResponseField name="Visual" type="component">
       <div className="flex items-center gap-2">
-        <Clock className="h-4 w-4 animate-spin" />
-        <span>Executing Flow (Cached)</span>
+        <Clock className="h-4 w-4 animate-spin" style={{ color: '#353D61' }} />
+        <span style={{ color: '#353D61' }}>Executing Flow (Cached)</span>
       </div>
-    </ResponseField>
-    <ResponseField name="Colors" type="string">
-      Light Mode: #353D61
-      Dark Mode: #C6CBEB
     </ResponseField>
     <ResponseField name="Description" type="string">
       The agent is quickly running a saved version of your flow to validate it efficiently.
@@ -85,13 +73,9 @@ You can click on the information icon (i) next to any status to get more details
   <Expandable title="Details">
     <ResponseField name="Visual" type="component">
       <div className="flex items-center gap-2">
-        <XCircle className="h-4 w-4" />
-        <span>Flow Failed</span>
+        <XCircle className="h-4 w-4" style={{ color: '#F04438' }} />
+        <span style={{ color: '#F04438' }}>Flow Failed</span>
       </div>
-    </ResponseField>
-    <ResponseField name="Colors" type="string">
-      Light Mode: #F04438
-      Dark Mode: #F04438
     </ResponseField>
     <ResponseField name="Description" type="string">
       The flow execution encountered an issue during validation.
@@ -107,13 +91,9 @@ You can click on the information icon (i) next to any status to get more details
   <Expandable title="Details">
     <ResponseField name="Visual" type="component">
       <div className="flex items-center gap-2">
-        <CheckCircle2 className="h-4 w-4" />
-        <span>Flow Passed</span>
+        <CheckCircle2 className="h-4 w-4" style={{ color: '#8AC44B' }} />
+        <span style={{ color: '#8AC44B' }}>Flow Passed</span>
       </div>
-    </ResponseField>
-    <ResponseField name="Colors" type="string">
-      Light Mode: #8AC44B
-      Dark Mode: #8AC44B
     </ResponseField>
     <ResponseField name="Description" type="string">
       The flow executed successfully without any issues.
@@ -129,13 +109,9 @@ You can click on the information icon (i) next to any status to get more details
   <Expandable title="Details">
     <ResponseField name="Visual" type="component">
       <div className="flex items-center gap-2">
-        <Play className="h-4 w-4" />
-        <span>Flow Ready</span>
+        <Play className="h-4 w-4" style={{ color: '#353D61' }} />
+        <span style={{ color: '#353D61' }}>Flow Ready</span>
       </div>
-    </ResponseField>
-    <ResponseField name="Colors" type="string">
-      Light Mode: #353D61
-      Dark Mode: #C6CBEB
     </ResponseField>
     <ResponseField name="Description" type="string">
       Your flow is fully prepared and ready to be executed.
@@ -151,13 +127,9 @@ You can click on the information icon (i) next to any status to get more details
   <Expandable title="Details">
     <ResponseField name="Visual" type="component">
       <div className="flex items-center gap-2">
-        <RefreshCwOff className="h-4 w-4" />
-        <span>Pending Validation</span>
+        <RefreshCwOff className="h-4 w-4" style={{ color: '#353D61' }} />
+        <span style={{ color: '#353D61' }}>Pending Validation</span>
       </div>
-    </ResponseField>
-    <ResponseField name="Colors" type="string">
-      Light Mode: #353D61
-      Dark Mode: #C6CBEB
     </ResponseField>
     <ResponseField name="Description" type="string">
       The agent is verifying the flow carefully after a potential inconsistency was detected.
@@ -173,13 +145,9 @@ You can click on the information icon (i) next to any status to get more details
   <Expandable title="Details">
     <ResponseField name="Visual" type="component">
       <div className="flex items-center gap-2">
-        <Pyramid className="h-4 w-4" />
-        <span>Triage</span>
+        <Pyramid className="h-4 w-4" style={{ color: '#353D61' }} />
+        <span style={{ color: '#353D61' }}>Triage</span>
       </div>
-    </ResponseField>
-    <ResponseField name="Colors" type="string">
-      Light Mode: #353D61
-      Dark Mode: #C6CBEB
     </ResponseField>
     <ResponseField name="Description" type="string">
       Bugster will take a look at it.
