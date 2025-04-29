@@ -1,0 +1,59 @@
+# Test Statuses
+
+This section provides a comprehensive overview of the different test statuses in Bugster and what they mean. Understanding these statuses will help you track the progress of your flows and identify any issues that need attention.
+
+## Overview
+
+Bugster uses different status indicators to show the current state of your test flows. These statuses help you understand what's happening behind the scenes and provide clear feedback about your flow's progress.
+
+## Status Types
+
+### Building Flow
+**Description:** The agent is building your test flow from scratch.
+**What's happening:** Bugster is creating a new flow, setting up the environment, and preparing all necessary steps for testing.
+
+### Re-Validating Flow
+**Description:** The agent detected something unusual and is revalidating the flow with a fresh check.
+**What's happening:** Bugster is rebuilding the flow to ensure maximum accuracy after detecting potential inconsistencies.
+
+### Executing Flow (Cached)
+**Description:** The agent is quickly running a saved version of your flow to validate it efficiently.
+**What's happening:** Bugster is using an optimized version of your flow for faster validation. If anything seems off, it will automatically rebuild and revalidate the flow.
+
+### Flow Failed
+**Description:** The flow execution encountered an issue during validation.
+**What's happening:** Something went wrong during the flow execution. Bugster will provide details about what failed.
+
+### Flow Passed
+**Description:** The flow executed successfully without any issues.
+**What's happening:** All validations were completed successfully, and your flow is working as expected.
+
+### Flow Ready
+**Description:** Your flow is fully prepared and ready to be executed.
+**What's happening:** The flow has been built and is waiting for execution.
+
+### Pending Validation
+**Description:** The agent is verifying the flow carefully after a potential inconsistency was detected.
+**What's happening:** Bugster is double-checking the flow to ensure everything is working correctly.
+
+## Understanding Status Indicators
+
+When you see a status, you can click on the information icon (i) to get more details about what's happening. For example:
+
+- **Executing Flow (Cached)**: "Bugster is running a saved version of your flow to quickly validate that everything is still working correctly. If anything seems off, Bugster will automatically rebuild and revalidate the flow for maximum accuracy."
+
+## Best Practices
+
+1. **Monitor Status Changes**: Keep an eye on status changes to understand your flow's progress.
+2. **Check Details**: Click the information icon to get detailed explanations about the current status.
+3. **Be Patient**: Some statuses like "Building Flow" or "Re-Validating Flow" might take longer as Bugster ensures everything is working correctly.
+
+## Troubleshooting
+
+If you encounter any issues:
+
+1. **Flow Failed**: Check the error details provided by Bugster to understand what went wrong.
+2. **Pending Validation**: This is normal when Bugster detects potential inconsistencies. Wait for the validation to complete.
+3. **Stuck Status**: If a status seems to be stuck, try refreshing the page or contact support if the issue persists.
+
+Remember that Bugster automatically handles most issues by rebuilding and revalidating flows when necessary, ensuring your tests remain accurate and reliable. 

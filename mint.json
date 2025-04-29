@@ -45,6 +45,7 @@
         "platform/sections/existing-flows",
         "platform/sections/suggested-flows",
         "platform/sections/flow-executions",
+        "platform/sections/test-statuses",
         "platform/sections/flow-groups",
         "platform/sections/project-settings"
       ]
