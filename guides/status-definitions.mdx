@@ -1,57 +1,149 @@
-This guide provides a comprehensive overview of the different statuses you'll encounter in Bugster and what they mean. Understanding these statuses will help you track the progress of your flows and identify any issues that need attention.
+# Status Definitions
+
+<Info>
+This guide provides a comprehensive overview of the different statuses you'll encounter in Bugster. Understanding these statuses will help you track the progress of your flows and identify any issues that need attention.
+</Info>
 
 ## Overview
 
 Bugster uses different status indicators to show the current state of your test flows. These statuses help you understand what's happening behind the scenes and provide clear feedback about your flow's progress.
 
+<Tip>
+You can click on the information icon (i) next to any status to get more details about what's happening.
+</Tip>
+
 ## Status Types
 
 ### Building Flow
-**Description:** The agent is building your test flow from scratch.
-**What's happening:** Bugster is creating a new flow, setting up the environment, and preparing all necessary steps for testing.
+<ResponseField name="Building Flow" type="Status">
+  <Expandable title="Details">
+    <ResponseField name="Description" type="string">
+      The agent is building your test flow from scratch.
+    </ResponseField>
+    <ResponseField name="What's happening" type="string">
+      Bugster is creating a new flow, setting up the environment, and preparing all necessary steps for testing.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
 ### Re-Validating Flow
-**Description:** The agent detected something unusual and is revalidating the flow with a fresh check.
-**What's happening:** Bugster is rebuilding the flow to ensure maximum accuracy after detecting potential inconsistencies.
+<ResponseField name="Re-Validating Flow" type="Status">
+  <Expandable title="Details">
+    <ResponseField name="Description" type="string">
+      The agent detected something unusual and is revalidating the flow with a fresh check.
+    </ResponseField>
+    <ResponseField name="What's happening" type="string">
+      Bugster is rebuilding the flow to ensure maximum accuracy after detecting potential inconsistencies.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
 ### Executing Flow (Cached)
-**Description:** The agent is quickly running a saved version of your flow to validate it efficiently.
-**What's happening:** Bugster is using an optimized version of your flow for faster validation. If anything seems off, it will automatically rebuild and revalidate the flow.
+<ResponseField name="Executing Flow (Cached)" type="Status">
+  <Expandable title="Details">
+    <ResponseField name="Description" type="string">
+      The agent is quickly running a saved version of your flow to validate it efficiently.
+    </ResponseField>
+    <ResponseField name="What's happening" type="string">
+      Bugster is using an optimized version of your flow for faster validation. If anything seems off, it will automatically rebuild and revalidate the flow.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
 ### Flow Failed
-**Description:** The flow execution encountered an issue during validation.
-**What's happening:** Something went wrong during the flow execution. Bugster will provide details about what failed.
+<ResponseField name="Flow Failed" type="Status">
+  <Expandable title="Details">
+    <ResponseField name="Description" type="string">
+      The flow execution encountered an issue during validation.
+    </ResponseField>
+    <ResponseField name="What's happening" type="string">
+      Something went wrong during the flow execution. Bugster will provide details about what failed.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
 ### Flow Passed
-**Description:** The flow executed successfully without any issues.
-**What's happening:** All validations were completed successfully, and your flow is working as expected.
+<ResponseField name="Flow Passed" type="Status">
+  <Expandable title="Details">
+    <ResponseField name="Description" type="string">
+      The flow executed successfully without any issues.
+    </ResponseField>
+    <ResponseField name="What's happening" type="string">
+      All validations were completed successfully, and your flow is working as expected.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
 ### Flow Ready
-**Description:** Your flow is fully prepared and ready to be executed.
-**What's happening:** The flow has been built and is waiting for execution.
+<ResponseField name="Flow Ready" type="Status">
+  <Expandable title="Details">
+    <ResponseField name="Description" type="string">
+      Your flow is fully prepared and ready to be executed.
+    </ResponseField>
+    <ResponseField name="What's happening" type="string">
+      The flow has been built and is waiting for execution.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
 ### Pending Validation
-**Description:** The agent is verifying the flow carefully after a potential inconsistency was detected.
-**What's happening:** Bugster is double-checking the flow to ensure everything is working correctly.
-
-## Understanding Status Indicators
-
-When you see a status, you can click on the information icon (i) to get more details about what's happening. For example:
-
-- **Executing Flow (Cached)**: "Bugster is running a saved version of your flow to quickly validate that everything is still working correctly. If anything seems off, Bugster will automatically rebuild and revalidate the flow for maximum accuracy."
+<ResponseField name="Pending Validation" type="Status">
+  <Expandable title="Details">
+    <ResponseField name="Description" type="string">
+      The agent is verifying the flow carefully after a potential inconsistency was detected.
+    </ResponseField>
+    <ResponseField name="What's happening" type="string">
+      Bugster is double-checking the flow to ensure everything is working correctly.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
 ## Best Practices
 
-1. **Monitor Status Changes**: Keep an eye on status changes to understand your flow's progress.
-2. **Check Details**: Click the information icon to get detailed explanations about the current status.
-3. **Be Patient**: Some statuses like "Building Flow" or "Re-Validating Flow" might take longer as Bugster ensures everything is working correctly.
+<CardGroup cols={2}>
+  <Card
+    title="Monitor Status Changes"
+    icon="eye"
+    iconType="regular"
+  >
+    Keep an eye on status changes to understand your flow's progress.
+  </Card>
+
+  <Card
+    title="Check Details"
+    icon="info-circle"
+    iconType="regular"
+  >
+    Click the information icon to get detailed explanations about the current status.
+  </Card>
+
+  <Card
+    title="Be Patient"
+    icon="clock"
+    iconType="regular"
+  >
+    Some statuses like "Building Flow" or "Re-Validating Flow" might take longer as Bugster ensures everything is working correctly.
+  </Card>
+
+  <Card
+    title="Automatic Recovery"
+    icon="shield-check"
+    iconType="regular"
+  >
+    Bugster automatically handles most issues by rebuilding and revalidating flows when necessary.
+  </Card>
+</CardGroup>
 
 ## Troubleshooting
 
-If you encounter any issues:
+<Warning>
+If you encounter any issues, follow these steps:
+</Warning>
 
 1. **Flow Failed**: Check the error details provided by Bugster to understand what went wrong.
 2. **Pending Validation**: This is normal when Bugster detects potential inconsistencies. Wait for the validation to complete.
 3. **Stuck Status**: If a status seems to be stuck, try refreshing the page or contact support if the issue persists.
 
-Remember that Bugster automatically handles most issues by rebuilding and revalidating flows when necessary, ensuring your tests remain accurate and reliable. 
+<Check>
+Remember that Bugster automatically handles most issues by rebuilding and revalidating flows when necessary, ensuring your tests remain accurate and reliable.
+</Check> 
