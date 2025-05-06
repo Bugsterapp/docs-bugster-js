@@ -18,6 +18,10 @@
     {
       "name": "Support",
       "url": "mailto:ignacio@bugster.dev"
+    },
+    {
+      "name": "Give us feedback",
+      "url": "https://bugster.canny.io/feature-requests"
     }
   ],
   "topbarCtaButton": {
